@@ -1,4 +1,4 @@
-# Anoop Singh — Senior Software Engineer & Drupal Specialist
+# Anoop Singh — Senior Software Engineer & Drupal Specialist 
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-0369a1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://anoopsingh92.github.io/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anoopsingh92/)
