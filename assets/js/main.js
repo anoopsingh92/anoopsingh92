@@ -1,8 +1,4 @@
-const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-/* hero letters */
-$$('h1 .ln').forEach((l, r) => {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)]; const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;  /* hero letters */ $$('h1 .ln').forEach((l, r) => {
   l.innerHTML = [...l.dataset.s].map((c, i) => `<span class="ch" style="--i:${i + r * 5}">${c}</span>`).join('');
 });
 
@@ -55,25 +51,16 @@ const io = new IntersectionObserver(es => es.forEach(e => {
   io.unobserve(e.target);
 }), { threshold: .15 });
 
-$$('.rv').forEach(e => io.observe(e));
-
-/* scroll progress + active link */
-const links = $$('nav ul a');
+$$('.rv').forEach(e => io.observe(e));  /* scroll progress + active link */ const links = $$
+  ('nav ul a');
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
   const bar = $('#bar');
   if (bar) bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
   links.forEach(a => {
-    const s = $(a.getAttribute('href'));
-    if (s && !s.hidden) {
-      const r = s.getBoundingClientRect();
-      a.classList.toggle('on', r.top < innerHeight * .45 && r.bottom > innerHeight * .45);
-    }
+    const s = $(a.getAttribute('href')); if (s && !s.hidden) { const r = s.getBoundingClientRect(); a.classList.toggle('on', r.top < innerHeight * .45 && r.bottom > innerHeight * .45); }
   });
-}, { passive: true });
-
-/* card tilt + spotlight */
-$$('.card').forEach(c => {
+}, { passive: true });  /* card tilt + spotlight */ $$('.card').forEach(c => {
   c.addEventListener('pointermove', e => {
     const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
     c.style.setProperty('--mx', x * 100 + '%');
@@ -131,7 +118,7 @@ if (cv) {
       const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy), R = 150;
       if (d < R && d > 0) {
         const f = (R - d) / R * 26;
-        p.x += (dx / d * f) * .15;
+        p.x += (dx / d * f - (p.x - p.ox) * 0) * .15;
         p.y += (dy / d * f) * .15;
       }
       p.x += (p.ox - p.x) * .08;
@@ -171,27 +158,26 @@ const R = [
   if (!tr || !R.length) return;
   tr.innerHTML = R.map((r, i) => `<div class="tc rv" style="--d:${(i % 3) * .1}s"><div class="trate">★★★★★</div><p>${r.t}</p><div class="who"><img class="t-avatar" src="${r.a}" alt="${r.n}" width="50" height="50" loading="lazy"><div class="who-meta"><b>${r.n}</b><span>${r.r}</span></div></div></div>`).join('');
   $$('#tr .rv').forEach(e => io.observe(e));
-})();
+})();  /* navigation links */ $$
+  ('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const h = a.getAttribute('href');
+      if (!h || h === '#') return;
+      if (h === '#me' || location.hash === '#me') return;
 
-/* navigation links */
-$$('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const h = a.getAttribute('href');
-    if (!h || h === '#') return;
-    if (h === '#me' || location.hash === '#me') return;
-
-    const t = $(h);
-    if (t) {
-      e.preventDefault();
-      t.scrollIntoView({ behavior: 'smooth' });
-      history.pushState(null, null, h);
-    }
+      const t = $(h);
+      if (t) {
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, null, h);
+      }
+    });
   });
-});
 
 /* full story content */
 const HD = (t, h) => `<h2 class='rv'><small>${t}</small>${h}</h2>`;
 const pl = L => L.map((t, i) => `<span style='--i:${i}'>${t}</span>`).join('');
+
 const E = [
   ['NextOpcode Consulting LLP', 'Senior Software Engineer', 'Sep 2026 – Present', 'Serving as a Senior Software Engineer at NextOpcode Consulting LLP.'],
   ['Ekfrazo Technologies Private Limited', 'Senior Drupal Developer', 'Nov 2025 – Aug 2026 · 9 mos', 'Served as a Senior Drupal Developer at Ekfrazo Technologies.'],
@@ -199,11 +185,14 @@ const E = [
   ['Maan Softwares Inc. · Jaipur', 'Senior Front-end Developer', 'Oct 2016 – Jan 2020 · 3 yrs 4 mos', 'Senior Drupal front-end developer implementing modern front-end technologies and optimizing performance for Drupal applications.'],
   ['Dice Infocom · Jaipur', 'Web Designer', 'Jan 2013 – Sep 2016 · 3 yrs 9 mos', 'UI design, responsive web development and front-end enhancements.']
 ];
+
+/* Education matching Experience timeline UI */
 const ED = [
-  ['Master of Computer Applications (MCA) · Computer Science', 'Jaipur National University', '2018 – 2019'],
-  ['Bachelor of Computer Application (BCA) · Computer Science', 'Jaipur National University', '2013 – 2014'],
-  ['Polytechnic (Engineering Diploma) · Computer Science', 'Board of Technical Education Rajasthan', '2009 – 2012']
+  ['Jaipur National University', 'Master of Computer Applications (MCA) · Computer Science', '2018 – 2019', 'Postgraduate studies with focus on advanced computer applications, software engineering, and web technologies.'],
+  ['Jaipur National University', 'Bachelor of Computer Application (BCA) · Computer Science', '2013 – 2014', 'Undergraduate foundation in software development, data structures, and interface design.'],
+  ['Board of Technical Education Rajasthan', 'Polytechnic (Engineering Diploma) · Computer Science', '2009 – 2012', 'Comprehensive diploma curriculum covering core computer science principles and programming methodologies.']
 ];
+
 const K = [
   ['Front-end & Theming', ['Custom Drupal theming', 'Twig engine', 'Theme migrations (D7→D9, D7→D10, D8→D10)', 'HTML5', 'CSS3', 'SCSS / SASS', 'LESS', 'Bootstrap (3, 4, 5)', 'Bootstrap Barrio', 'bootstrap_sass', 'Google MDL', 'Responsive design', 'Cross-browser']],
   ['CMS & Decoupled', ['Drupal 7, 8, 9, 10, 11', 'Decoupled Drupal', 'REST API & ReactJS', 'Progressive Web Apps (PWA)', 'FlexiStyle Maintainer', 'Drupal Security Advisory', 'WordPress', 'Project Browser']],
@@ -214,116 +203,288 @@ const K = [
   ['UI Design & Prototyping', ['Figma', 'Adobe XD', 'Photoshop', 'Photopea', 'Wireframing', 'Email templates (Mailchimp/Mandrill)', 'Animate on Scroll (AOS)']],
   ['Workflow & Collaboration', ['Jira', 'Basecamp', 'Notion', 'Slack', 'Zoom', 'Teams', 'Cursor / VS Code', 'Sublime Text']]
 ];
+
+/* Restored All Press Items */
 const PR = [
   ['The DropTimes', 'Anoop Singh Launches New Drupal Theme FlexiStyle Bootstrap', 'https://www.thedroptimes.com/40251/anoop-singh-launches-new-drupal-theme-flexistyle-bootstrap'],
   ['The DropTimes', 'FlexiStyle Bootstrap SCSS Theme Coming to Drupal.org', 'https://www.thedroptimes.com/42013/flexistyle-bootstrap-scss-theme-coming-drupalorg'],
   ['The DropTimes', 'FlexiStyle Digital Experience Theme for Drupal 10 and 11 Announced', 'https://www.thedroptimes.com/42871/flexistyle-digital-experience-theme-drupal-10-and-11-announced'],
   ['The DropTimes', 'Step-by-Step Guide to Publishing Themes and Modules on Drupal.org', 'https://www.thedroptimes.com/44779/step-step-guide-publishing-themes-and-modules-drupalorg'],
   ['Valuebound', 'Celebrating Anoop Singh’s Success Story: The ‘Magician’ of Drupal Development', 'https://www.valuebound.com/resources/blog/celebrating-anoop-singhs-success-story-magician-drupal'],
-  ['The DropTimes', 'Contributor profile on The DropTimes', 'https://www.thedroptimes.com/people/40250/anoopsingh92']
+  ['The DropTimes', 'Contributor profile on The DropTimes', 'https://www.thedroptimes.com/people/40250/anoopsingh92'],
+  [
+    'Instagram Feature',
+    'Featured Spotlight & Project Milestone Announcement',
+    'https://www.instagram.com/p/C84UC78Mlqm/'
+  ],
+  [
+    'Instagram Coverage',
+    'Community Highlight & Drupal Theming Release',
+    'https://www.instagram.com/p/C7RQEPmJb7j/'
+  ],
+  [
+    'Instagram Spotlight',
+    'Technical Contribution & Project Showcase',
+    'https://www.instagram.com/p/C3XiL-1Bfsj/'
+  ],
+  [
+    'LinkedIn Feature',
+    'Professional Recognition & Contributor Update',
+    'https://lnkd.in/p/gi7Sdn9x'
+  ],
+  [
+    'LinkedIn Spotlight',
+    'Drupal Ecosystem Milestone & Community Discussion',
+    'https://www.linkedin.com/feed/update/urn:li:activity:7293636407598714880/'
+  ]
 ];
+
+/* ===================================================
+   RESTORED CERTIFICATIONS WITH VERIFICATION LINKS
+=================================================== */
 const CE = [
-  ['Introduction to Drupal 10', 'Forcontu · Credential ID: D10SBINIEN2163', 'Issued Feb 2025', ''],
-  ['Introduction to Drupal 9', 'Forcontu · Credential ID: D9SBINIEN1611', 'Issued Jan 2023', ''],
-  ['Responsive Web Design', 'freeCodeCamp', 'Issued Jun 2021', ''],
-  ['Google Material Design Lite', 'Udemy', 'Issued Feb 2021', ''],
-  ['CSS Essential Training', 'LinkedIn', 'Issued Nov 2020', ''],
-  ['HTML Essential Training', 'LinkedIn', 'Issued Nov 2020', ''],
-  ['AWS Cloud Economics', 'Amazon Web Services (AWS)', 'Issued Jun 2020', ''],
-  ['Diploma in Web Design', 'Alison', 'Issued Jul 2019', ''],
-  ['Complete Bootstrap 4 course', 'Udemy', 'Issued Mar 2019', '']
+  ['Introduction to Drupal 10', 'Forcontu', 'Issued Feb 2025', 'D10SBINIEN2163', 'https://www.forcontu.com/'],
+  ['Introduction to Drupal 9', 'Forcontu', 'Issued Jan 2023', 'D9SBINIEN1611', 'https://www.forcontu.com/'],
+  ['Responsive Web Design', 'freeCodeCamp', 'Issued Jun 2021', '', 'https://www.freecodecamp.org/certification/anoopsingh92/responsive-web-design'],
+  ['Google Material Design Lite', 'Udemy', 'Issued Feb 2021', 'UC-a0284bc3-d075-495c-a095-3e55d0beb830', 'https://www.udemy.com/certificate/UC-a0284bc3-d075-495c-a095-3e55d0beb830/'],
+  ['CSS Essential Training', 'LinkedIn Learning', 'Issued Nov 2020', 'AQVwj_8S1wcjWj1rEH1TjiVWhi6I', 'https://www.linkedin.com/learning/certificates/AQVwj_8S1wcjWj1rEH1TjiVWhi6I'],
+  ['HTML Essential Training', 'LinkedIn Learning', 'Issued Nov 2020', 'AS50JZ8vYV-I__mjgXPvN8UJ2MZ0', 'https://www.linkedin.com/learning/certificates/AS50JZ8vYV-I__mjgXPvN8UJ2MZ0'],
+  ['AWS Cloud Economics', 'Amazon Web Services (AWS)', 'Issued Jun 2020', 'Dp1URZptRECL1KMhsqwa_w2', 'https://www.aws.training/'],
+  ['Introduction to EC2', 'Amazon Web Services (AWS)', 'Issued Jun 2020', 'eEYysXqaZUW0y-eqrxOBUQ2', 'https://www.aws.training/'],
+  ['Introduction to EC2 Auto Scaling', 'Amazon Web Services (AWS)', 'Issued Jun 2020', 'ZyX0NbxU60qO7Cg6IfpaLw2', 'https://www.aws.training/'],
+  ['Diploma in Web Design', 'Alison - Free Online Learning', 'Issued Jul 2019', '256-14292767', 'https://alison.com/certification/check/256-14292767'],
+  ['Web Page Design Using HTML5 and CSS3', 'Alison - Free Online Learning', 'Issued Jul 2019', '1413-14292767', 'https://alison.com/certification/check/1413-14292767'],
+  ['Web Page Development', 'Alison - Free Online Learning', 'Issued Jul 2019', '245-14292767', 'https://alison.com/certification/check/245-14292767'],
+  ['Web Development By Doing: HTML / CSS From Scratch', 'Udemy', 'Issued Apr 2019', 'UC-N4D56W16', 'https://www.udemy.com/certificate/UC-N4D56W16/'],
+  ['Complete Bootstrap 4 Course', 'Udemy', 'Issued Mar 2019', 'UC-7GD9H7AC', 'https://www.udemy.com/certificate/UC-7GD9H7AC/'],
+  ['HTML/CSS and Bootstrap (Top 25%)', 'TestDome', 'Issued Dec 2017', 'ji8keiut4m', 'https://www.testdome.com/cert/ji8keiut4m'],
+  ['HTML/CSS (Top 10%)', 'TestDome', 'Issued Dec 2017', '85w6yvi1zd', 'https://www.testdome.com/cert/85w6yvi1zd']
 ];
+
+/* ===================================================
+   RESTORED COMPLETE PROJECTS DIRECTORY
+=================================================== */
 const LP = [
-  ['woodyplants.kendallhunt.com', 'Decoupled · Drupal 11 + Next.js', 'Rebuilt as a decoupled educational platform: back end runs on Drupal 11 with Next.js front end.', 'https://woodyplants.kendallhunt.com/'],
+  ['Woody Plants in North America', 'Decoupled • Drupal 11 + Next.js', 'Rebuilt as a decoupled educational platform: back end runs on Drupal 11 with Next.js front end.', 'https://woodyplants.kendallhunt.com/'],
   ['store.rclbenziger.com', 'Drupal 7 → 11 Migration', 'Catholic educational publisher store and curriculum portal migrated from Drupal 7 to modern Drupal 11.', 'https://store.rclbenziger.com/'],
   ['greatriverlearning.com', 'Drupal 7 → 11 Migration', 'Higher education publication platform migrated from legacy Drupal 7 to modern Drupal 11.', 'https://www.greatriverlearning.com/'],
   ['walji.kendallhunt.com', 'Drupal 7 → 11 Migration', 'Higher education courseware portal migrated from Drupal 7 to Drupal 11.', 'https://walji.kendallhunt.com/'],
-  ['paradigmeducation.com', 'Drupal 7 → 11 Migration', 'Educational technology and courseware portal migrated from Drupal 7 to modern Drupal 11.', 'https://www.paradigmeducation.com/'],
+  ['Paradigm Education Solutions', 'Drupal 7 → 11 Migration', 'Educational technology and courseware portal migrated from Drupal 7 to modern Drupal 11.', 'https://www.paradigmeducation.com/'],
   ['Dr. Reddy’s Betapharm', 'Enterprise Acquia Theming', 'Enterprise pharmaceutical portal deployed on Acquia Site Factory with customized theming.', 'https://betapharm.test-drreddys.acsitefactory.com'],
-  ['GRL Content (D7 to D10 Migration)', 'Drupal 10 Migration', 'Migrated custom Drupal theme from D7 to D10. Custom Twigs and Bootstrap components.', 'https://www.grlcontent.com'],
-  ['Valuebound Corporate & PWA', 'Decoupled PWA', 'Corporate platform with Decoupled Drupal, REST API with ReactJS, and Progressive Web App.', 'https://valuebound.com']
+  ['Hydrology Chicago', 'Pantheon • Drupal', 'Development and styling for hydrology platform hosted on Pantheon.', 'https://dev-hydrologychicago.pantheonsite.io'],
+  ['HCP Engagement Portal', 'Pantheon • Drupal', 'Healthcare professional engagement platform architecture.', 'https://dev-hcp-engagement-portal.pantheonsite.io/'],
+  ['RCL Benziger HeartDev', 'Drupal Custom Build', 'Interactive educational and religious portal architecture.', 'http://www.heartdev.rclbenziger.com'],
+  ['ProBlock AI', 'Modern Web & AI Platform', 'Clean, responsive interface and modern front-end styling.', 'https://problock.ai'],
+  ['CostSheet Kendall Hunt', 'Drupal Internal Tooling', 'Course publishing and cost management system for Kendall Hunt.', 'https://costsheet.kendallhunt.com'],
+  ['K12 Kendall Hunt', 'Drupal Theming', 'Publishing platform and curriculum portal built for K-12 educators and students.', 'https://k12.kendallhunt.com/'],
+  ['digitalexperience.live', 'Drupal 10 Showcase', 'Interactive digital experience demonstration platform with decoupled UI features.', 'https://digitalexperience.live'],
+  ['GRL Content', 'Drupal 7 → 10 Migration', 'Migrated custom theme from D7 to D10 using Bootstrap and custom Twigs.', 'https://www.grlcontent.com'],
+  ['Kendall Hunt Corporate', 'Enterprise Drupal', 'Main publishing corporate platform migration and responsive optimization.', 'https://www.kendallhunt.com/'],
+  ['Flourish KH', 'Education Portal', 'Custom Drupal theming and responsive UI for educational products.', 'https://flourishkh.com'],
+  ['RVCE Portal', 'Pantheon • Drupal Multisite', 'Institutional web platform hosted on Pantheon.', 'https://dev-rvce-drupal.pantheonsite.io'],
+  ['HE Kendall Hunt', 'Drupal 9 Migration', 'Higher Education theme migration from D7 to D9 using Bootstrap Barrio with SASS compiler.', 'https://he.kendallhunt.com'],
+  ['Valuebound Corporate', 'Decoupled Drupal 10 + React', 'Redesigned corporate platform with Decoupled Drupal, REST API with ReactJS, and PWA.', 'https://valuebound.com'],
+  ['GRL Engagement Multisite', 'Drupal Multisite Theming', 'Multisite custom theme created from scratch in Bootstrap 4 SASS with Gulp compiler.', 'https://grlengagement.com'],
+  ['Wellbeing VMware', 'Headless Drupal & UI/UX', 'Headless Drupal implementation with accessible UI components adhering to mockups.', '#'],
+  ['Green America', 'Drupal Theming', 'Custom Bootstrap-based theme in Drupal for prominent 501(c)(3) environmental organization.', 'https://greenamerica.org'],
+  ['Members Message Paris', 'Community Platform', 'Community portal for English-speaking parents across France.', 'https://members.messageparis.org'],
+  ['Tommy Fierst', 'Custom Web Design', 'Personal branding and motivational life coach website.', 'https://tommyfierst.com'],
+  ['OurVillageLife', 'Community & Marketplace', 'Local community marketplace connecting members for local exchanges.', 'https://ourvillagelife.com']
 ];
+/* ===================================================
+   RESTORED ACHIEVEMENTS (Award Photos & Honors)
+=================================================== */
+const AW = [
+  {
+    title: 'Best Team',
+    org: 'Valuebound • 2021',
+    desc: 'In recognition of exemplary team performance.'
+  },
+  {
+    title: 'Best Team of the Quarter',
+    org: 'Valuebound • Q3 2022',
+    desc: 'For extraordinary work in Q3 2022.'
+  }
+];
+/* ===================================================
+   RENDER FULL STORY (#me-body)
+=================================================== */
+(function renderStory() {
+  const meBody = $('#me-body');
+  if (!meBody) return;
 
-const meBody = $('#me-body');
-if (meBody) {
-  meBody.innerHTML = [
-    `<div class='sec'>${HD('01 / open source', 'Giving back to Drupal.')}<div class='stats rv'><div class='stat'><b data-n='5' data-p='+'>0</b><span>custom Drupal themes built</span></div><div class='stat'><b data-n='7' data-p='+'>0</b><span>projects maintained</span></div><div class='stat'><b data-n='125' data-p='+'>0</b><span>credits on issues</span></div><div class='stat'><b>SA</b><span>opted in to security advisory coverage</span></div></div><div class='box rv' style='margin:20px 0'><div class='pills'>${pl(['Patches', 'Modules', 'Themes', 'Issue queues', 'Documentation'])}</div></div><a class='btn p' href='https://www.drupal.org/u/anoopsingh92' target='_blank' rel='noopener'>Drupal.org profile ↗</a></div>`,
-    `<div class='sec'>${HD('02 / experience', 'Where I’ve worked.')}<div class='tl'>${E.map(e => `<div class='it rv'><h3>${e[1]}</h3><div class='d'>${e[0]} · ${e[2]}</div><p>${e[3]}</p></div>`).join('')}</div></div>`,
-    `<div class='sec'>${HD('04 / education', 'Where I learned.')}<div class='ed'>${ED.map(e => `<div class='box rv'><h3>${e[0]}</h3><p style='margin:0 0 10px;color:var(--mut)'>${e[1]}</p><span>${e[2]}</span></div>`).join('')}</div></div>`,
-    `<div class='sec'>${HD('05 / technical skills', 'Everything in the toolbox.')}<div class='sk'>${K.map((k, i) => `<div class='box rv' style='--d:${(i % 3) * .1}s'><h3>${k[0]}</h3><div class='pills'>${pl(k[1])}</div></div>`).join('')}</div></div>`,
-    LP.length ? `<div class='sec'>${HD('06 / my projects', 'My Projects.')}<div class='pr'>${LP.map(l => `<${l[3] ? "a href='" + l[3] + "' target='_blank' rel='noopener'" : 'div'} class='box rv'><small>${l[1]}</small><h3>${l[0]}</h3><p style='margin:8px 0 0;color:var(--mut);font-size:.92rem'>${l[2]}</p></${l[3] ? 'a' : 'div'}>`).join('')}</div></div>` : '',
-    `<div class='sec'>${HD('07 / in the press', 'Featured &amp; mentioned.')}<div class='pr'>${PR.map(p => `<a class='box rv' href='${p[2]}' target='_blank' rel='noopener'><small>${p[0]} ↗</small><h3>${p[1]}</h3></a>`).join('')}</div></div>`,
-    CE.length ? `<div class='sec'>${HD('08 / licenses &amp; certifications', 'Always learning.')}<div class='ed'>${CE.map(c => `<${c[3] ? "a href='" + c[3] + "' target='_blank' rel='noopener'" : 'div'} class='box rv'><h3>${c[0]}</h3><p style='margin:0 0 10px;color:var(--mut)'>${c[1]}</p><span>${c[2]}</span></${c[3] ? 'a' : 'div'}>`).join('')}</div></div>` : ''
-  ].filter(Boolean).join('');
-  $$('#me-body .rv').forEach(e => io.observe(e));
-}
+  meBody.innerHTML = `
+    <!-- Experience Timeline -->
+    <div class="sec">
+      ${HD('01 / career', 'Work Experience')}
+      <div class="tl">
+        ${E.map(e => `
+          <div class="it rv">
+            <h3>${e[1]} &mdash; <span>${e[0]}</span></h3>
+            <div class="d">${e[2]}</div>
+            <p>${e[3]}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
 
-/* route handler */
+    <!-- Education Timeline -->
+    <div class="sec">
+      ${HD('02 / education', 'Academic Background')}
+      <div class="tl">
+        ${ED.map(e => `
+          <div class="it rv">
+            <h3>${e[0]}</h3>
+            <div class="d">${e[1]} &bull; ${e[2]}</div>
+            <p>${e[3]}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Detailed Skillset Matrix -->
+    <div class="sec">
+      ${HD('03 / technical skills', 'Comprehensive Toolkit')}
+      <div class="sk">
+        ${K.map(k => `
+          <div class="box rv">
+            <h3>${k[0]}</h3>
+            <div class="pills">${pl(k[1])}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- All Delivered Projects -->
+    <div class="sec">
+      ${HD('04 / project directory', 'All Notable Projects')}
+      <div class="pr">
+        ${LP.map(p => `
+          <a class="box rv" href="${p[3]}" ${p[3] !== '#' ? 'target="_blank" rel="noopener"' : ''}>
+            <small>${p[1]}</small>
+            <h3>${p[0]} ${p[3] !== '#' ? '&rarr;' : ''}</h3>
+            <p style="margin:8px 0 0; color:var(--mut); font-size:0.88rem; line-height:1.5;">${p[2]}</p>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Achievements & Recognitions -->
+    <div class="sec">
+      ${HD('05 / achievements', 'Honours & Awards')}
+      <div class="awd">
+        ${AW.map(a => `
+          <div class="aw box rv">
+            <figcaption>
+              <b>${a.title}</b>
+              <span>${a.org}</span>
+              <p>${a.desc}</p>
+            </figcaption>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Press & Publications -->
+    <div class="sec">
+      ${HD('06 / press', 'Publications & Articles')}
+      <div class="pr">
+        ${PR.map(p => `
+          <a class="box rv" href="${p[2]}" target="_blank" rel="noopener">
+            <small>${p[0]}</small>
+            <h3>${p[1]} &rarr;</h3>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Verified Certifications -->
+    <div class="sec">
+      ${HD('07 / credentials', '16 Verified Certifications')}
+      <div class="pr">
+        ${CE.map(c => `
+          <div class="box rv" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <small>${c[2]}</small>
+              <h3 style="font-size:1.1rem; margin-top:4px;">${c[0]}</h3>
+              <span style="font-family:var(--mono); font-size:0.75rem; color:var(--mut); display:block; margin:6px 0 12px;">
+                ${c[1]}${c[3] ? ` • ID: ${c[3]}` : ''}
+              </span>
+            </div>
+            ${c[4] ? `
+              <a href="${c[4]}" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.78rem; color:var(--ac); font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px; margin-top:auto;">
+                View Credential &rarr;
+              </a>
+            ` : ''}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+})();
+
+/* ===================================================
+   HASH ROUTING (#me full story & back home)
+=================================================== */
 function route() {
-  const m = location.hash === '#me';
-  document.body.classList.toggle('pg-me', m);
+  const isMe = location.hash === '#me';
+  const homeEl = $('.home');
   const meEl = $('#me');
-  if (meEl) meEl.hidden = !m;
 
-  if (m) {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  } else if (location.hash.length > 1) {
-    let t = null;
-    try { t = $(location.hash); } catch (e) { }
-    if (t) {
-      setTimeout(() => {
-        t.scrollIntoView({ behavior: 'smooth' });
-      }, 50);
-    }
-  } else {
+  if (homeEl && meEl) {
+    homeEl.hidden = isMe;
+    meEl.hidden = !isMe;
+    document.body.classList.toggle('pg-me', isMe);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Re-observe dynamic rv elements
+    $$('.rv:not(.in)').forEach(el => io.observe(el));
   }
 }
+
 window.addEventListener('hashchange', route);
-route();
+if (location.hash === '#me') route();
 
-/* footer clock + back to top */
-const clockEl = $('#clock');
-const ck = () => {
-  if (clockEl) clockEl.textContent = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
-};
-ck();
-setInterval(ck, 30000);
-
+/* Back to Top button logic */
 const upBtn = $('#up');
 if (upBtn) {
-  upBtn.onclick = () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-}
-
-/* copy email */
-const copyBtn = $('#copy');
-if (copyBtn) {
-  copyBtn.onclick = async () => {
-    try {
-      await navigator.clipboard.writeText('k.anoopsingh92@gmail.com');
-      copyBtn.textContent = 'Copied ✓';
-    } catch (e) {
-      location.href = 'mailto:k.anoopsingh92@gmail.com';
+  const ring = $('#ring');
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    upBtn.classList.toggle('show', s > 400);
+    if (ring && h > 0) {
+      const p = 125.7 - (s / h) * 125.7;
+      ring.style.strokeDashoffset = Math.max(0, p);
     }
-    setTimeout(() => copyBtn.textContent = 'Copy email', 1800);
-  };
-}
+  }, { passive: true });
 
-/* footer watermark spotlight */
-const fw = $('.fwm');
-const footer = $('footer');
-if (fw && footer) {
-  footer.addEventListener('pointermove', e => {
-    const r = fw.getBoundingClientRect();
-    fw.style.setProperty('--fx', (e.clientX - r.left) + 'px');
-    fw.style.setProperty('--fy', (e.clientY - r.top) + 'px');
+  upBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
-  const ring = $('#ring');
-  if (ring) ring.style.strokeDashoffset = 125.7 * (1 - p);
-  if (upBtn) upBtn.classList.toggle('show', h.scrollTop > 600);
-}, { passive: true });
+/* Copy Email Button */
+const copyBtn = $('#copy');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('k.anoopsingh92@gmail.com').then(() => {
+      const prev = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => copyBtn.textContent = prev, 2000);
+    });
+  });
+}
+/* Footer Watermark (.fwm) dynamic glow tracker */
+const fw = $('.fwm'); $('footer').addEventListener('pointermove', e => { const r = fw.getBoundingClientRect(); fw.style.setProperty('--fx', (e.clientX - r.left) + 'px'); fw.style.setProperty('--fy', (e.clientY - r.top) + 'px') });
+addEventListener('scroll', () => { const h = document.documentElement, p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight); $('#ring').style.strokeDashoffset = 125.7 * (1 - p); $('#up').classList.toggle('show', h.scrollTop > 600) }, { passive: true });
+
+/* IST Live Clock */
+(function updateClock() {
+  const clk = $('#clock');
+  if (!clk) return;
+  const now = new Date();
+  const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  clk.textContent = ist.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  setTimeout(updateClock, 1000);
+})();
