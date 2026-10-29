@@ -1402,8 +1402,8 @@ function setView(isMe, targetHash = '') {
   const meEl = $('#me');
   if (!homeEl || !meEl) return;
 
-  homeEl.hidden = isMe;
-  meEl.hidden = !isMe;
+  homeEl.style.display = isMe ? 'none' : 'block';
+  meEl.style.display = isMe ? 'block' : 'none';
   document.body.classList.toggle('pg-me', isMe);
 
   $$('.rv:not(.in)').forEach(el => io.observe(el));
