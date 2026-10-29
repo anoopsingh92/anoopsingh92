@@ -101,83 +101,93 @@
         </div>
       </section>
 
-      <section id="about">
-        <div class="about">
-          <!-- Profile Card -->
-          <div class="pic-wrapper rv">
-            <div class="pic-card">
-              <div class="pic-inner">
-                <img src="assets/img/anoop.jpg" alt="Portrait of Anoop Singh" width="480" height="552">
-                <div class="pic-badge-top">
-                  <span>✦</span> Drupal Themer
+      <section id="about" class="about-pinned-section">
+        <div class="about-pin-stage">
+          <div class="about">
+            <!-- Left Column: Large Editorial Portrait Monolith -->
+            <div class="pic-wrapper rv">
+              <div class="pic-card">
+                <div class="pic-inner">
+                  <img src="assets/img/anoop.jpg" alt="Portrait of Anoop Singh" width="480" height="552">
+                  <div class="pic-badge-top">
+                    <span>✦</span> Drupal Themer
+                  </div>
+
+                  <!-- Frosted Glass Overlay Dock inside the Large Portrait -->
+                  <div class="pic-glass-dock">
+                    <div class="pic-meta-bottom">
+                      <div>
+                        <b>Anoop Singh</b>
+                        <span>Senior Software Engineer</span>
+                      </div>
+                      <div class="pic-meta-status">
+                        <i></i> Open to Collab
+                      </div>
+                    </div>
+                    <div class="pic-scroll-progress" aria-hidden="true">
+                      <div class="pic-prog-track"><i id="about-hud-bar"></i></div>
+                      <span class="pic-prog-num"><b id="about-step-num">01</b> / 03</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="pic-meta-bottom">
-                <div>
-                  <b>Anoop Singh</b>
-                  <span>Senior Software Engineer</span>
+            </div>
+
+            <!-- Right Column: Narrative + Pinned 3D Card Stack -->
+            <div class="about-content rv" style="--d:.15s">
+              <div class="about-header-group">
+                <h2><small>01 / about</small>Architecting resilient front-ends and enterprise Drupal platforms.</h2>
+                <p class="about-lead">
+                  With <strong>13+ years</strong> engineering custom Drupal solutions, I transform complex backend
+                  architectures
+                  into accessible, performant, and silky-smooth digital experiences.
+                </p>
+              </div>
+
+              <div class="about-stack" id="about-stack">
+                <div class="about-item is-active" data-idx="01">
+                  <span class="about-item-num">01</span>
+                  <div class="about-item-body">
+                    <h4>Theme Engineering &amp; Modern Migrations</h4>
+                    <p>Zero-downtime upgrades from Drupal 7 to 10/11, Twig conversions, and Barrio/SASS design systems.
+                    </p>
+                  </div>
                 </div>
-                <div class="pic-meta-status">
-                  <i></i> Open to Collab
+                <div class="about-item" data-idx="02">
+                  <span class="about-item-num">02</span>
+                  <div class="about-item-body">
+                    <h4>Decoupled &amp; Headless Architectures</h4>
+                    <p>Delivering high-speed front-ends pairing Drupal REST/GraphQL APIs with Next.js, React, and PWAs.
+                    </p>
+                  </div>
                 </div>
+                <div class="about-item" data-idx="03">
+                  <span class="about-item-num">03</span>
+                  <div class="about-item-body">
+                    <h4>Open Source &amp; Community Contributions</h4>
+                    <p>Drupal Association member, maintainer of FlexiStyle themes, and active contributor with 125+
+                      issue
+                      credits.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="about-actions">
+                <a class="btn p" href="#me">Read Full Story →</a>
+                <a class="btn" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download Resume
+                  ↓</a>
+                <a class="btn" href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener">LinkedIn
+                  ↗</a>
               </div>
             </div>
           </div>
 
-          <!-- About Narrative -->
-          <div class="about-content rv" style="--d:.15s">
-            <h2><small>01 / about</small>Architecting resilient front-ends and enterprise Drupal platforms.</h2>
-
-            <p class="about-lead">
-              With <strong>13+ years</strong> engineering custom Drupal solutions, I transform complex backend
-              architectures
-              into accessible, performant, and silky-smooth digital experiences.
-            </p>
-
-            <div class="about-stack">
-              <div class="about-item">
-                <span class="about-item-num">01</span>
-                <div class="about-item-body">
-                  <h4>Theme Engineering &amp; Modern Migrations</h4>
-                  <p>Zero-downtime upgrades from Drupal 7 to 10/11, Twig conversions, and Barrio/SASS design systems.
-                  </p>
-                </div>
-              </div>
-
-              <div class="about-item">
-                <span class="about-item-num">02</span>
-                <div class="about-item-body">
-                  <h4>Decoupled &amp; Headless Architectures</h4>
-                  <p>Delivering high-speed front-ends pairing Drupal REST/GraphQL APIs with Next.js, React, and PWAs.
-                  </p>
-                </div>
-              </div>
-
-              <div class="about-item">
-                <span class="about-item-num">03</span>
-                <div class="about-item-body">
-                  <h4>Open Source &amp; Community Contributions</h4>
-                  <p>Drupal Association member, maintainer of FlexiStyle themes, and active contributor with 125+ issue
-                    credits.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-actions">
-              <a class="btn p" href="#me">Read Full Story →</a>
-              <a class="btn" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download Resume
-                ↓</a>
-              <a class="btn" href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener">LinkedIn
-                ↗</a>
-            </div>
+          <div class="stats rv">
+            <div class="stat"><b data-n="2" data-p="k+">0</b><span>LinkedIn network</span></div>
+            <div class="stat"><b data-n="13" data-p="+">0</b><span>years industry experience</span></div>
+            <div class="stat"><b data-n="30" data-p="+">0</b><span>Drupal &amp; web projects</span></div>
+            <div class="stat"><b data-n="125" data-p="+">0</b><span>community contribution credits</span></div>
           </div>
-        </div>
-
-        <div class="stats rv">
-          <div class="stat"><b data-n="2" data-p="k+">0</b><span>LinkedIn network</span></div>
-          <div class="stat"><b data-n="13" data-p="+">0</b><span>years industry experience</span></div>
-          <div class="stat"><b data-n="30" data-p="+">0</b><span>Drupal &amp; web projects</span></div>
-          <div class="stat"><b data-n="125" data-p="+">0</b><span>community contribution credits</span></div>
         </div>
       </section>
 

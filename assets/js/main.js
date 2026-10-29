@@ -443,7 +443,93 @@ const EARLIER_PROJECTS = [
     </div>`
     ).join('') + '<div class="track-end-spacer" aria-hidden="true"></div>';
 })();
+/* ===================================================
+   PINNED SCROLLTRIGGER: ABOUT SECTION
+=================================================== */
+function initAboutPinnedScroll() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
 
+  const section = document.querySelector('#about.about-pinned-section');
+  if (!section) return;
+
+  ScrollTrigger.getAll().forEach(st => {
+    if (st.trigger === section) st.kill();
+  });
+
+  const items = [...section.querySelectorAll('.about-item')];
+  const stats = [...section.querySelectorAll('.stat')];
+  const hudBar = document.getElementById('about-hud-bar');
+  const stepNum = document.getElementById('about-step-num');
+  const portraitImg = section.querySelector('.pic-inner img');
+  const actions = section.querySelector('.about-actions');
+
+  if (window.innerWidth <= 980 || reduce || document.body.classList.contains('pg-me')) {
+    gsap.set([items, stats, portraitImg, actions], { clearProps: 'all' });
+    items.forEach(el => el.classList.add('is-active'));
+    return;
+  }
+
+  const triggerAboutCounters = () => {
+    section.querySelectorAll('[data-n]').forEach(c => {
+      if (c.dataset.counted) return;
+      c.dataset.counted = 'true';
+      const n = +c.dataset.n,
+        p = c.dataset.p || '';
+      let s = null;
+      const f = t => {
+        s = s || t;
+        const k = Math.min((t - s) / 1400, 1);
+        c.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))) + p;
+        if (k < 1) requestAnimationFrame(f);
+      };
+      requestAnimationFrame(f);
+    });
+  };
+
+  // Initial states: Card 1 visible, Cards 2 & 3 tucked below
+  gsap.set(items[0], { opacity: 1, y: 0, scale: 1 });
+  gsap.set(items.slice(1), { opacity: 0.15, y: 36, scale: 0.96 });
+  gsap.set(actions, { opacity: 0.25, y: 16 });
+  gsap.set(stats, { opacity: 0.2, y: 24 });
+  gsap.set(portraitImg, { scale: 1.08, yPercent: -3 });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top+=65',
+      end: '+=1400',
+      pin: true,
+      scrub: 0.6,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onEnter: triggerAboutCounters,
+      onUpdate: self => {
+        const p = self.progress;
+        if (hudBar) hudBar.style.width = `${Math.max(15, p * 100).toFixed(1)}%`;
+        const activeIdx = p < 0.34 ? 0 : p < 0.68 ? 1 : 2;
+        if (stepNum) stepNum.textContent = `0${activeIdx + 1}`;
+        items.forEach((el, idx) => el.classList.toggle('is-active', idx === activeIdx));
+      }
+    }
+  });
+
+  // Smooth portrait pan/scale across the entire pinned scroll
+  tl.to(portraitImg, { scale: 1, yPercent: 0, duration: 3, ease: 'none' }, 0);
+
+  // Step 1 -> 2: Slide in Pillar 02
+  tl.to(items[0], { opacity: 0.55, scale: 0.98, duration: 1, ease: 'power2.out' }, 0)
+    .to(items[1], { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power2.out' }, 0);
+
+  // Step 2 -> 3: Slide in Pillar 03 & Actions
+  tl.to(items[1], { opacity: 0.55, scale: 0.98, duration: 1, ease: 'power2.out' }, 1)
+    .to(items[2], { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power2.out' }, 1)
+    .to(actions, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 1.2);
+
+  // Step 3 -> Finale: Illuminate all 3 cards + Stagger in Stats Row
+  tl.to(items, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 2)
+    .to(stats, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power2.out' }, 2);
+}
 /* ===================================================
    PINNED SCROLLTRIGGER: EARLIER WORK
 =================================================== */
@@ -491,6 +577,7 @@ function initPinnedScroll() {
 }
 
 window.addEventListener('load', () => {
+  initAboutPinnedScroll();
   initPinnedScroll();
   setTimeout(() => {
     if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
@@ -499,6 +586,7 @@ window.addEventListener('load', () => {
 
 window.addEventListener('resize', () => {
   if (typeof ScrollTrigger !== 'undefined') {
+    initAboutPinnedScroll();
     initPinnedScroll();
     ScrollTrigger.refresh();
   }
@@ -1325,6 +1413,7 @@ function setView(isMe, targetHash = '') {
     requestAnimationFrame(() => pinRenderers.forEach(fn => fn()));
   } else {
     requestAnimationFrame(() => {
+      initAboutPinnedScroll();
       initPinnedScroll();
       if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       if (targetHash && targetHash !== '#top') {
