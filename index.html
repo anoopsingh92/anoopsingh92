@@ -14,10 +14,12 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="./favicon.ico" />
     <link rel="manifest" href="./site.webmanifest">
     <!-- Asynchronous stylesheet loading pattern -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=YOUR_FONT_FAMILY&display=swap" as="style"
-      onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=YOUR_FONT_FAMILY&display=swap">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
     </noscript>
     <link rel="stylesheet" href="assets/css/style.min.css">
   </head>
@@ -40,7 +42,7 @@
           Resume ↓</a><button id="theme" aria-label="Toggle theme">◐</button></span>
     </nav>
 
-    <main class="home">
+    <div class="home">
       <section role="banner" class="hero" id="top">
         <div class="hero-grid">
           <!-- Left Column (Existing Hero Content) -->
@@ -103,7 +105,7 @@
         </div>
       </section>
 
-      <section id="about" class="about-pinned-section">
+      <section role="main" id="about" class="about-pinned-section">
         <div class="about-pin-stage">
           <div class="about">
             <!-- Left Column: Large Editorial Portrait Monolith -->
@@ -292,7 +294,7 @@
           <a href="https://anoopsingh92.website2.me/" target="_blank" rel="noopener">Website ↗</a>
         </div>
       </section>
-    </main>
+    </div>
     <section id="me" aria-label="Full Story" hidden>
       <h1 class="mh">The full <span>story.</span></h1>
       <p class="lead">As a passionate Drupal Front-end Developer and Team Lead, I bring extensive experience in custom
