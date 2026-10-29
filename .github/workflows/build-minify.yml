@@ -26,10 +26,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Minify CSS & JS in-place
+      - name: Minify CSS and JS into .min files
         run: |
-          npx --yes esbuild assets/css/style.css --minify --outfile=assets/css/style.css --allow-overwrite
-          npx --yes esbuild assets/js/main.js --minify --outfile=assets/js/main.js --allow-overwrite
+          npx --yes esbuild assets/css/style.css --minify --outfile=assets/css/style.min.css
+          npx --yes esbuild assets/js/main.js --minify --outfile=assets/js/main.min.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
