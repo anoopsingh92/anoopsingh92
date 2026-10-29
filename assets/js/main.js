@@ -530,6 +530,7 @@ function initAboutPinnedScroll() {
   tl.to(items, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 2)
     .to(stats, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power2.out' }, 2);
 }
+
 /* ===================================================
    PINNED SCROLLTRIGGER: EARLIER WORK
 =================================================== */
