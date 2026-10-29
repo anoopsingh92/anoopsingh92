@@ -4,7 +4,10 @@ name: Minify & Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
+    paths:
+      - "assets/css/style.css"
+      - "assets/js/main.js"
 
 permissions:
   contents: read
