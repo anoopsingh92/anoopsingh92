@@ -45,13 +45,11 @@
 	box-sizing: border-box;
 }
 
-/* IMPORTANT: Do NOT set scroll-behavior: smooth here, as it fights JS wheel inertia & GSAP */
 html {
 	scroll-padding-top: 80px;
 	overflow-x: clip;
 }
 
-/* IMPORTANT: Use overflow-x: clip instead of hidden so position: sticky works inside #me */
 body {
 	margin: 0;
 	background: var(--bg);
