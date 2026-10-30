@@ -321,7 +321,8 @@ const R = [
       <div class="who">
       <picture class="t-avatar-pic" style="flex-shrink:0;">
         <source srcset="${r.a.replace(/\.(jpg|png)$/, '.webp')}" type="image/webp">
-        <img class="t-avatar" src="${r.a}" alt="${r.n}" width="50" height="50" loading="lazy">
+        <img class="t-avatar" src="assets/img/${r.a.replace(/\.(jpg|png)$/, '.webp')}" srcset="assets/img/${r.a.replace(/\.(jpg|png)$/, '-small.webp')} 50w, assets/img/${r.a.replace(/\.(jpg|png)$/, '.webp')} 100w" 
+        sizes="50px" alt="${r.n}" width="50" height="50" loading="lazy">
       </picture>
         <div class="who-meta">
           <b>${r.n}</b>
