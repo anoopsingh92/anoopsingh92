@@ -2,7 +2,7 @@
 const $ = s => document.querySelector(s),
   $$ = s => [...document.querySelectorAll(s)];
 const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-if (location.hash === '#me') location.replace('/story');
+if (location.hash === '#me') location.replace('/about');
 
 /* ===================================================
    SMOOTH SCROLLING ENGINE (Eased Anchors + Wheel Inertia)
