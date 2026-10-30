@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anoopsingh92.github.io/ask/sitemap.xml
