@@ -7,13 +7,19 @@
     <title>Anoop Singh — Front-End Developer & Drupal Themer</title>
     <meta name="description"
       content="Anoop Singh, Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Add your canonical tag here -->
+    <link rel="canonical" href="https://anoopsingh92.github.io/ask/" />
+
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
     <link rel="icon" type="image/x-icon" sizes="16x16" href="./favicon.ico" />
     <link rel="manifest" href="./site.webmanifest" />
+
     <!-- Asynchronous stylesheet loading pattern -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" as="image" href="assets/img/anoop.jpg" fetchpriority="high" />
     <link rel="preload"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
       as="style" onload="this.onload=null;this.rel='stylesheet'" />
@@ -112,7 +118,11 @@
             <div class="pic-wrapper rv">
               <div class="pic-card">
                 <div class="pic-inner">
-                  <img src="assets/img/anoop.jpg" alt="Portrait of Anoop Singh" width="480" height="552">
+                  <picture>
+                    <srcset srcset="assets/img/anoop.webp" type="image/webp">
+                      <img src="assets/img/anoop.jpg" alt="Portrait of Anoop Singh" width="480" height="552"
+                        fetchpriority="high">
+                  </picture>
                   <div class="pic-badge-top">
                     <span>✦</span> Drupal Themer
                   </div>
@@ -261,7 +271,8 @@
             <h3>walji.kendallhunt.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
             <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
           </a>
-          <a class="mc rv" style="--d:0.3s" href="https://www.paradigmeducation.com/" target="_blank" rel="noopener">
+          <a class="mc rv" style="--d:0.3s" href="https://www.paradigmeducation.com/" target="_blank"
+            rel="noopener nofollow">
             <div class="mv"><b>D7</b><i>→</i><b class="to">D11</b></div>
             <h3>paradigmeducation.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
             <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
@@ -295,26 +306,6 @@
         </div>
       </section>
     </div>
-    <section id="me" aria-label="Full Story" hidden>
-      <h1 class="mh">The full <span>story.</span></h1>
-      <p class="lead">As a passionate Drupal Front-end Developer and Team Lead, I bring extensive experience in custom
-        theming and performance optimization. With expertise in HTML, CSS, SCSS, Bootstrap, and CSS frameworks, I
-        specialize in creating responsive, accessible, and high-performance web solutions. <br><br>
-
-        Currently, I actively maintain several Drupal projects, including FlexiStyle and FlexiStyle Bootstrap, with
-        Drupal security advisory coverage. I am also an Individual Member of the Drupal Association.<br><br>
-
-        My experience spans across Pantheon, DDEV, and Git-based workflows, Drush, ensuring seamless development and
-        deployment.
-        I am also well-versed in SEO, performance optimization, and analytics tools like Google Search Console, and
-        PageSpeed Insights.</p>
-      <div class="cta"><a class="btn p" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download
-          Resume ↓</a><a class="btn" href="https://techdrupalogy.blogspot.com/" target="_blank"
-          rel="noopener">TechDrupalogy Blog ↗</a><a class="btn" href="https://www.linkedin.com/in/anoopsingh92/"
-          target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn" href="mailto:k.anoopsingh92@gmail.com">Email
-          me</a></div>
-      <section id="me-body"></section>
-    </section>
 
     <footer role="contentinfo">
       <div class="ft" aria-hidden="true">
