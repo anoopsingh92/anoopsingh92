@@ -357,7 +357,7 @@ h1 span.ch:hover {
 	color: var(--ac2);
 }
 
-.role u {
+.role span {
 	display: inline-block;
 	width: 0.6ch;
 	height: 1.1em;
