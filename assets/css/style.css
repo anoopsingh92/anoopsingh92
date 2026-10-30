@@ -76,7 +76,6 @@ body {
 	text-decoration: none;
 	transition: top 0.2s ease-in-out;
 }
-
 .skip-link:focus {
 	top: 0;
 }
