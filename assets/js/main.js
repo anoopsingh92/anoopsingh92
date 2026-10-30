@@ -258,49 +258,49 @@ const R = [
     t: 'He is a very good at what he does. Enjoyed working with you.',
     n: 'Chandraveer Singh Rathore',
     r: 'Technical Lead | Helping Businesses Build, Modernise & Scale Drupal and Custom Web Platforms | Drupal 10/11 · PHP · Symfony · APIs · Next.js',
-    a: av('chandraveer.jpg')
+    a: av('chandraveer.webp')
   },
   {
     t: 'I have worked with Anoop this past fall putting together a website. Anoop was professional, a great communicator, timely, helpful and has built a wonderful website for me. Anoop is easy to work with and I highly recommend him. I have another website I have to redo soon and will use Anoop again without question.',
     n: 'Tom Fierst',
     r: 'President at Thomas Fierst Ins Agency',
-    a: av('tom.jpg')
+    a: av('tom.webp')
   },
   {
     t: 'Anoop has been our lifeline for the redesign of website in Drupal 8 for a large national nonprofit. He has been particularly attentive to detail and has provided clean, mobile-responsive, beautiful results for our team. We are very happy with the themeing work he has completed for us and look forward to engaging with him for additional website work in the future.',
     n: 'Monica F.',
     r: 'Accessibility-focused enterprise-level technical project manager and Certified ScrumMaster',
-    a: av('monica.jpg')
+    a: av('monica.webp')
   },
   {
     t: 'Anoop has worked on my Drupal website for more than a year and has done an outstanding job improving its appearance. He is immediately responsive to my requests and finishes each task quickly.',
     n: 'Barry Koren, AIA, PhD',
     r: 'Founder at TimeExchanges',
-    a: av('barry.jpg')
+    a: av('barry.webp')
   },
   {
     t: 'Anoop is very proficient and skilled web designer with very good knowledge of html and css.He is master in creating websites responsive.He is specialist in drupal theming.',
     n: 'Deepesh Arora',
     r: 'Drupal Consultant | PHP | Laravel | NEXT JS | TypeScript',
-    a: av('dipesh.jpg')
+    a: av('dipesh.webp')
   },
   {
     t: 'Anoop is a sincere web designer knows the issues and designing very well. He knows what he is going to do and what will be its impact. As well as he worked according to the standards to maintain the quality.',
     n: 'Shubham Agrawal',
     r: 'Technical Project Manager @ Xceedance | Technology Management, People Management',
-    a: av('shubham.jpg')
+    a: av('shubham.webp')
   },
   {
     t: 'Anoop having deep knowledge of web designing and solve all the designing related points patiently by following proper drupal standard.',
     n: 'Bhuvaneshwar Sharma',
     r: 'Sr. Software Engineer | Developing with Drupal, AngularJS',
-    a: av('bhuv.jpg')
+    a: av('bhuv.webp')
   },
   {
     t: 'Anoop have deep knowledge in css and very energetic person. He takes every challenge and complete them by his superb and very effective design. He is mastered in Drupal design, css, and responsive css. It is a great experience with working with anoop.',
     n: 'Shubham Agrawal',
     r: 'Technical Project Manager @ Xceedance | Technology Management, People Management',
-    a: av('shubham.jpg')
+    a: av('shubham.webp')
   }
 ];
 
@@ -319,7 +319,10 @@ const R = [
       </div>
       <p>${r.t}</p>
       <div class="who">
+      <picture class="t-avatar-pic" style="flex-shrink:0;">
+        <source srcset="${r.a.replace(/\.(jpg|png)$/, '.webp')}" type="image/webp">
         <img class="t-avatar" src="${r.a}" alt="${r.n}" width="50" height="50" loading="lazy">
+      </picture>
         <div class="who-meta">
           <b>${r.n}</b>
           <span>${r.r}</span>
