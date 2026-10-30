@@ -448,6 +448,7 @@ const EARLIER_PROJECTS = [
     </div>`
     ).join('') + '<div class="track-end-spacer" aria-hidden="true"></div>';
 })();
+
 /* ===================================================
    PINNED SCROLLTRIGGER: ABOUT SECTION
 =================================================== */
