@@ -1,0 +1,22 @@
+# Anoop Singh
+
+> Anoop Singh is a Senior Software Engineer and Drupal Specialist with 13+ years of experience specializing in front-end architecture, responsive UI/UX, decoupled CMS implementations, and custom Drupal theming (Drupal 7–11).
+
+## Professional Overview
+- **Role**: Senior Software Engineer at NextOpcode Consulting LLP
+- **Expertise**: Custom Drupal 10/11 Theming, Decoupled Next.js Architectures, React, TypeScript, and Full-Stack Web Engineering.
+- **Location**: Jaipur, India (Remote-friendly worldwide)
+
+## Key Links
+- [Portfolio Homepage](https://anoopsingh92.github.io/ask/)
+- [Full Career Story & Certifications](https://anoopsingh92.github.io/ask/story.html)
+- [Download Resume (PDF)](https://anoopsingh92.github.io/ask/assets/Anoop-Singh-Resume.pdf)
+- [LinkedIn Profile](https://www.linkedin.com/in/anoopsingh92/)
+- [Drupal.org Profile](https://www.drupal.org/u/anoopsingh92)
+- [GitHub Profile](https://github.com/anoopsingh92)
+
+## Notable Migrations & Projects
+- Woody Plants 4.0 (Decoupled Next.js & Drupal 11)
+- Great River Learning (Drupal 7 to 11 Migration)
+- Kendall Hunt Higher Education Platforms
+- Valuebound Corporate Portal Redesign (React & PWA)
