@@ -755,7 +755,7 @@ const pinRenderers = [];
             t = T[i],
             c = C[i];
           if (ad > 1.05) {
-            t.style.visibility = 'hidden';
+            t.style.visibility = 'hidden'; 
             t.style.pointerEvents = 'none';
           } else {
             t.style.visibility = 'visible';
