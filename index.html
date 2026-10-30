@@ -16,21 +16,34 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
     <link rel="icon" type="image/x-icon" sizes="16x16" href="./favicon.ico" />
     <link rel="manifest" href="./site.webmanifest" />
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anoop Singh — Front-End Developer & Drupal Themer">
+    <meta property="og:description"
+      content="Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
+    <meta property="og:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
+    <meta property="og:url" content="https://anoopsingh92.github.io/ask/">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anoop Singh — Front-End Developer & Drupal Themer">
+    <meta name="twitter:description"
+      content="Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
+    <meta name="twitter:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
+
+    <link rel="help" type="text/plain" href="llms.txt" />
 
     <!-- Asynchronous stylesheet loading pattern -->
+    <link rel="preload" as="image" href="assets/img/anoop.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" as="image" href="assets/img/anoop.jpg" fetchpriority="high" />
-    <link rel="preload"
+    <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
       as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" />
-    </noscript>
     <link rel="stylesheet" href="assets/css/style.min.css" />
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div id="bar"></div>
     <div id="glow"></div><canvas id="bg"></canvas>
     <nav role="navigation">
@@ -111,7 +124,7 @@
         </div>
       </section>
 
-      <section role="main" id="about" class="about-pinned-section">
+      <section role="main" id="main-content" class="about-pinned-section">
         <div class="about-pin-stage">
           <div class="about">
             <!-- Left Column: Large Editorial Portrait Monolith -->

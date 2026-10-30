@@ -17,19 +17,33 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="./favicon.ico" />
     <link rel="manifest" href="./site.webmanifest" />
 
+    <!-- Open Graph / Social Sharing Meta Tags for Story -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anoop Singh — Full Story & Career Timeline">
+    <meta property="og:description"
+      content="Comprehensive career timeline, educational background, Drupal contributions, and 16+ verified certifications of Anoop Singh.">
+    <meta property="og:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
+    <meta property="og:url" content="https://anoopsingh92.github.io/ask/story.html">
+
+    <!-- Twitter Card Meta Tags for Story -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anoop Singh — Full Story & Career Timeline">
+    <meta name="twitter:description"
+      content="Comprehensive career timeline, educational background, Drupal contributions, and 16+ verified certifications of Anoop Singh.">
+    <meta name="twitter:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
+
+    <link rel="help" type="text/plain" href="llms.txt" />
+
     <!-- Asynchronous stylesheet loading pattern -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload"
+    <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
       as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" />
-    </noscript>
     <link rel="stylesheet" href="assets/css/style.min.css" />
   </head>
 
   <body class="pg-me">
+    <a class="skip-link" href="#me">Skip to main content</a>
     <div id="bar"></div>
     <div id="glow"></div><canvas id="bg"></canvas>
     <nav role="navigation">
@@ -48,7 +62,7 @@
     </nav>
 
     <!-- Dedicated Full Story Container -->
-    <section id="me" aria-label="Full Story">
+    <section role="main" id="me" aria-label="Full Story">
       <h1 class="mh">The full <span>story.</span></h1>
       <p class="lead">As a passionate Drupal Front-end Developer and Team Lead, I bring extensive experience in custom
         theming and performance optimization. With expertise in HTML, CSS, SCSS, Bootstrap, and CSS frameworks, I

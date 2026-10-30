@@ -455,7 +455,7 @@ function initAboutPinnedScroll() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  const section = document.querySelector('#about.about-pinned-section');
+  const section = document.querySelector('.about-pinned-section');
   if (!section) return;
 
   ScrollTrigger.getAll().forEach(st => {
