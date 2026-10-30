@@ -1,6 +1,9 @@
 {
 	"name": "Anoop Singh",
 	"short_name": "Anoop",
+	"description": "Anoop Singh, Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.",
+	"start_url": "/",
+	"scope": "/",
 	"icons": [
 		{
 			"src": "assets/img/android-chrome-192x192.png",
