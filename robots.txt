@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
-
+Disallow: 
+Disallow: /cgi-bin/
 Sitemap: https://anoopsingh92.github.io/ask/sitemap.xml
