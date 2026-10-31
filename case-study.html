@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Case Study: Building a High-Performance PWA Portfolio — Anoop Singh</title>
+    <meta name="description"
+      content="Engineering case study detailing the architecture, performance optimization, automated CI/CD pipeline, and PWA implementation of Anoop Singh's portfolio.">
+    <link rel="canonical" href="https://anoopsingh92.github.io/ask/case-study.html">
+
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Case Study: Building a High-Performance PWA Portfolio — Anoop Singh">
+    <meta property="og:description"
+      content="Deep dive into zero-runtime static architecture, dual-format asset pipelines, and PWA resilience.">
+    <meta property="og:image" content="/assets/img/screenshot-wide.png">
+    <meta property="og:url" content="https://anoopsingh92.github.io/ask/case-study.html">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@kanoopsingh92">
+    <meta name="twitter:creator" content="@kanoopsingh92">
+    <meta name="twitter:title" content="Case Study: Building a High-Performance PWA Portfolio — Anoop Singh">
+    <meta name="twitter:description" content="Deep dive into zero-runtime static architecture and PWA resilience.">
+    <meta name="twitter:image" content="/assets/img/screenshot-wide.png">
+
+    <load src="/src/partials/head.html" />
+
+    <style>
+      .case-study-hero {
+        padding: calc(110px + env(safe-area-inset-top, 0px)) 5vw 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .case-study-badge {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 4px 14px;
+        border-radius: 99px;
+        background: color-mix(in srgb, var(--ac) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--ac) 30%, transparent);
+        color: var(--ac);
+        margin-bottom: 1.25rem;
+      }
+
+      .case-study-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+        padding: 20px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        margin: 2rem 0 3rem;
+      }
+
+      .meta-item-label {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--mut);
+        margin-bottom: 4px;
+      }
+
+      .meta-item-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--fg);
+      }
+
+      .case-study-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 5vw 80px;
+        line-height: 1.8;
+      }
+
+      .case-study-content h2 {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 0.5rem;
+      }
+
+      .case-study-content h3 {
+        font-size: 1.25rem;
+        color: var(--ac);
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .case-study-content p,
+      .case-study-content ul {
+        color: var(--mut);
+        font-size: 1.02rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .case-study-content ul {
+        padding-left: 1.5rem;
+      }
+
+      .case-study-content li {
+        margin-bottom: 0.5rem;
+      }
+
+      .case-study-content strong {
+        color: var(--fg);
+      }
+
+      .metrics-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 2.5rem 0;
+      }
+
+      .metric-card {
+        padding: 20px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        text-align: center;
+      }
+
+      .metric-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--ac);
+        display: block;
+        line-height: 1.1;
+      }
+
+      .metric-desc {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--mut);
+        margin-top: 6px;
+      }
+
+      .cta-box {
+        margin-top: 4rem;
+        padding: 3rem 2rem;
+        text-align: center;
+        background: color-mix(in srgb, var(--ac) 6%, var(--card));
+        border: 1px solid color-mix(in srgb, var(--ac) 28%, transparent);
+        border-radius: 20px;
+      }
+
+      .cta-box h3 {
+        margin-top: 0;
+        color: var(--fg);
+        font-size: 1.5rem;
+      }
+
+      .cta-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <load src="/src/partials/header.html" />
+
+    <main id="main-content">
+      <article class="case-study-hero">
+        <h1 class="mh" style="margin: 0.2em 0 0.4em;">Zero-Runtime <span>PWA Portfolio.</span></h1>
+        <p class="lead" style="max-width: 68ch;">
+          How this portfolio was engineered for sub-second Core Web Vitals, native PWA offline capability, automated
+          asset optimization, and LLM discoverability.
+        </p>
+
+        <div class="case-study-meta-grid">
+          <div class="meta-item">
+            <div class="meta-item-label">Role</div>
+            <div class="meta-item-value">Software Architect &amp; Lead</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-item-label">Stack</div>
+            <div class="meta-item-value">HTML5, CSS3, ES6+, Service Worker</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-item-label">Tooling</div>
+            <div class="meta-item-value">Vite, PWA, WebP Pipeline</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-item-label">AI Indexing</div>
+            <div class="meta-item-value">llms.txt Compliant</div>
+          </div>
+        </div>
+      </article>
+
+      <section class="case-study-content">
+        <h2>1. The Challenge</h2>
+        <p>
+          Modern developer portfolios frequently fall victim to framework bloat—bundling hundreds of kilobytes of
+          client-side JavaScript, third-party runtime hydration routines, and oversized asset bundles. This introduces
+          high Time-to-Interactive (TTI) latencies on mobile devices and renders sites fragile when network access
+          fluctuates.
+        </p>
+        <p>
+          The objective was to create a portfolio demonstrating architectural precision: a zero-dependency static core
+          that guarantees sub-second Core Web Vitals, full offline availability via PWA caching, dual-format image
+          optimization, and crawler transparency for both search engines and generative AI agents.
+        </p>
+
+        <h2>2. Key Architectural Decisions</h2>
+
+        <h3>Zero-Framework, Semantic Core</h3>
+        <p>
+          By bypassing heavyweight multi-tier SPA frameworks, the frontend eliminates JavaScript-driven initial paints.
+          Semantic HTML5 tags construct clean document outlines, accompanied by modular CSS custom properties and ES6+
+          vanilla scripts. Assets are minified and bundled in production, preserving developer readability in source
+          files while serving hyper-compact payloads.
+        </p>
+
+        <h3>Dual-Format Media Strategy</h3>
+        <p>
+          Images are provided in dual formats: legacy fallbacks (<code>.jpg</code> / <code>.png</code>) and modern
+          high-compression formats (<code>.webp</code>). This reduces raw image payload sizes significantly across
+          testimonial photos, team recognition assets, and project screenshots without sacrificing display fidelity.
+        </p>
+
+        <h3>Resilient Offline Caching (Service Worker)</h3>
+        <p>
+          Leveraging a dedicated Service Worker (<code>sw.js</code>) coupled with a Web App Manifest
+          (<code>manifest.json</code>), the site functions as an installable Progressive Web App. Critical documents,
+          stylesheets, and core images are stored in a client-side cache, enabling instantaneous subsequent views and
+          offline reading across mobile and desktop environments.
+        </p>
+
+        <h3>Machine Readability &amp; AI Discovery (<code>llms.txt</code>)</h3>
+        <p>
+          In addition to standard <code>robots.txt</code> and <code>sitemap.xml</code> protocols, an
+          <code>llms.txt</code> manifest was integrated into the project root. This ensures that modern LLMs and agentic
+          crawlers can accurately ingest career milestones, core architectural competencies, and technical
+          specializations in a streamlined Markdown format.
+        </p>
+
+        <h2>3. Quantitative Impact</h2>
+        <div class="metrics-container">
+          <div class="metric-card">
+            <span class="metric-number">100</span>
+            <span class="metric-desc">Lighthouse Performance Score</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">&lt; 0.8s</span>
+            <span class="metric-desc">Largest Contentful Paint (LCP)</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">0 KB</span>
+            <span class="metric-desc">Third-Party Framework Overhead</span>
+          </div>
+        </div>
+
+        <div class="cta-box">
+          <h3>Interested in scalable, high-performance web architecture?</h3>
+          <p>Explore more work, examine the underlying codebase, or get in touch for technical leadership and
+            engineering consultations.</p>
+          <div class="cta-actions">
+            <a href="assets/Anoop-Singh-Resume.pdf" class="btn p" download="Anoop-Singh-Resume.pdf">Download Resume
+              ↓</a>
+            <a href="about/" class="btn">Explore Full Story →</a>
+            <a href="mailto:k.anoopsingh92@gmail.com" class="btn">Get in Touch</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <load src="/src/partials/footer.html" />
+    <script type="module" src="/src/main.js"></script>
+  </body>
+
+</html>

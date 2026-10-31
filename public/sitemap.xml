@@ -11,9 +11,9 @@
     <priority>0.8000</priority>
   </url>
   <url>
-    <loc>https://anoopsingh92.github.io/ask/assets/Anoop-Singh-Resume.pdf</loc>
-    <lastmod>2026-10-31T05:00:00+00:00</lastmod>
-    <priority>0.8000</priority>
+    <loc>https://anoopsingh92.github.io/ask/case-study.html</loc>
+    <lastmod>2026-10-31T12:00:00+00:00</lastmod>
+    <priority>0.8500</priority>
   </url>
   <url>
     <loc>https://anoopsingh92.github.io/ask/products/</loc>
@@ -39,5 +39,10 @@
     <loc>https://anoopsingh92.github.io/ask/products/flexistyle-dxp/</loc>
     <lastmod>2026-10-31T12:00:00+00:00</lastmod>
     <priority>0.8000</priority>
+  </url>
+  <url>
+    <loc>https://anoopsingh92.github.io/ask/assets/Anoop-Singh-Resume.pdf</loc>
+    <lastmod>2026-10-31T05:00:00+00:00</lastmod>
+    <priority>0.7000</priority>
   </url>
 </urlset>

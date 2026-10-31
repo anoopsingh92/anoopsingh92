@@ -1,12 +1,16 @@
-const CACHE_NAME = 'anoopsingh-v2';
+const CACHE_NAME = 'anoopsingh-v3';
 const STATIC_ASSETS = [
   './',
   './about/',
+  './products/',
+  './case-study.html',
   './404.html',
   './assets/bundle.min.css',
   './assets/bundle.min.js',
   './assets/manifest.json',
-  './assets/favicon.ico'
+  './assets/favicon.ico',
+  './assets/img/anoop.webp',
+  './assets/img/screenshot-wide.png'
 ];
 
 self.addEventListener('install', event => {
@@ -30,14 +34,12 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Navigation fallback to cache first, network fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match(event.request))
+      fetch(event.request).catch(() => caches.match(event.request) || caches.match('./404.html'))
     );
     return;
   }
-
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       return cachedResponse || fetch(event.request);
