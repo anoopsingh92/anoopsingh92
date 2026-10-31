@@ -2,68 +2,31 @@
 <html lang="en">
 
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Anoop Singh — Front-End Developer & Drupal Themer</title>
     <meta name="description"
       content="Anoop Singh, Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
 
-    <!-- Add your canonical tag here -->
-    <link rel="canonical" href="https://anoopsingh92.github.io/ask/" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="./favicon.ico" />
-    <link rel="manifest" href="./manifest.json" />
     <!-- Open Graph / Social Sharing Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Anoop Singh — Front-End Developer & Drupal Themer">
     <meta property="og:description"
       content="Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
-    <meta property="og:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
-    <meta property="og:url" content="https://anoopsingh92.github.io/ask/">
+    <meta property="og:image" content="/assets/img/anoop.webp">
+    <meta property="og:url" content="/">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Anoop Singh — Front-End Developer & Drupal Themer">
     <meta name="twitter:description"
       content="Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
-    <meta name="twitter:image" content="https://anoopsingh92.github.io/ask/assets/img/anoop.webp">
+    <meta name="twitter:image" content="/assets/img/anoop.webp">
 
-    <link rel="help" type="text/plain" href="llms.txt" />
-
-    <!-- Asynchronous stylesheet loading pattern -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
-      media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-    </noscript>
-    <link rel="stylesheet" href="assets/css/style.min.css" />
+    <load src="/src/partials/head.html" />
   </head>
 
   <body>
     <a class="skip-link" href="#about">Skip to main content</a>
-    <div id="bar"></div>
-    <div id="glow"></div><canvas id="bg"></canvas>
-    <nav role="navigation">
-      <a class="logo" href="index.html">&lt;anoop<b>/</b>&gt;</a>
-      <ul>
-        <li><a href="index.html#about">about</a></li>
-        <li><a href="about.html">full story</a></li>
-        <li><a href="index.html#skillset">skillset</a></li>
-        <li><a href="index.html#recent">recent projects</a></li>
-        <li><a href="index.html#work">earlier work</a></li>
-        <li><a href="index.html#praise">recommendations</a></li>
-        <li><a href="index.html#contact">contact</a></li>
-      </ul>
-      <span class="nr"><a class="nbtn" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download
-          Resume ↓</a><button id="theme" aria-label="Toggle theme">◐</button></span>
-    </nav>
+    <load src="/src/partials/header.html" />
 
     <div class="home">
       <section role="banner" class="hero" id="top">
@@ -86,8 +49,8 @@
             </div>
 
             <div class="cta">
-              <a class="btn p" href="index.html#work">Explore My Work ↓</a>
-              <a class="btn" href="index.html#contact">Let’s Talk</a>
+              <a class="btn p" href="#work">Explore My Work ↓</a>
+              <a class="btn" href="#contact">Let’s Talk</a>
             </div>
           </div>
 
@@ -136,8 +99,9 @@
               <div class="pic-card">
                 <div class="pic-inner">
                   <picture>
-                    <srcset srcset="assets/img/anoop.webp" type="image/webp">
-                      <img src="assets/img/anoop.webp" srcset="assets/img/anoop.webp 480w, assets/img/anoop.webp 960w"
+                    <srcset srcset="/assets/img/anoop.webp" type="image/webp">
+                      <img src="/assets/img/anoop.webp"
+                        srcset="/assets/img/anoop.webp 480w, /assets/img/anoop.webp 960w"
                         sizes="(max-width: 768px) 100vw, 480px" alt="Portrait of Anoop Singh" width="480" height="552"
                         loading="lazy" fetchpriority="high">
                   </picture>
@@ -211,7 +175,7 @@
               </div>
 
               <div class="about-actions">
-                <a class="btn p" href="about.html">Read Full Story →</a>
+                <a class="btn p" href="about/">Read Full Story →</a>
                 <a class="btn" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download Resume
                   ↓</a>
                 <a class="btn" href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener">LinkedIn
@@ -264,7 +228,7 @@
         <div class="mig">
           <div class="mc wide rv">
             <div><small>Drupal 7 to decoupled migration</small>
-              <h3 style="font-size:1.5rem;margin:8px 0 12px">woodyplants.kendallhunt.com</h3>
+              <h3 style="font-size:1.5rem;margin:8px 0 12px">Woody Plants in North America</h3>
               <p style="margin:0 0 16px;color:var(--mut)">Rebuilt as a decoupled platform: the back end runs on Drupal
                 11 and the front end is built with Next.js.</p>
               <div class="chips" style="margin-bottom:20px"><span>Drupal
@@ -283,23 +247,29 @@
           <a class="mc rv" style="--d:0.0s" href="https://store.rclbenziger.com/" target="_blank" rel="noopener">
             <div class="mv"><b>D7</b><i>→</i><b class="to">D11</b></div>
             <h3>store.rclbenziger.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
-            <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
+            <p>Educational technology and courseware portal migrated from Drupal 7 to modern Drupal 11.</p>
+            <div class="chips"><span>Migration</span><span>Drupal 7 - 11</span><span>Twig</span><span>Latest
+                Bootstrap</span></div>
           </a>
           <a class="mc rv" style="--d:0.1s" href="https://www.greatriverlearning.com/" target="_blank" rel="noopener">
             <div class="mv"><b>D7</b><i>→</i><b class="to">D11</b></div>
             <h3>greatriverlearning.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
-            <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
+            <p>Higher education publication platform migrated from legacy Drupal 7 to modern Drupal 11.</p>
+            <div class="chips"><span>Migration</span><span>Drupal 7 - 11</span><span>Latest Bootstrap</span></div>
           </a>
           <a class="mc rv" style="--d:0.2s" href="https://walji.kendallhunt.com/" target="_blank" rel="noopener">
             <div class="mv"><b>D7</b><i>→</i><b class="to">D11</b></div>
             <h3>walji.kendallhunt.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
-            <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
+            <p>Educational technology and courseware portal migrated from Drupal 7 to modern Drupal 11.</p>
+            <div class="chips"><span>Migration</span><span>Drupal 7 - 11</span><span>Twig</span></div>
           </a>
           <a class="mc rv" style="--d:0.3s" href="https://www.paradigmeducation.com/" target="_blank"
             rel="noopener nofollow">
             <div class="mv"><b>D7</b><i>→</i><b class="to">D11</b></div>
             <h3>paradigmeducation.com ↗</h3><small>Drupal 7 to Drupal 11 migration</small>
-            <div class="chips"><span>Migration</span><span>Drupal 11</span></div>
+            <p>Higher education publication platform migrated from legacy Drupal 7 to modern Drupal 11.</p>
+            <div class="chips"><span>Migration</span><span>Drupal 7 - 11</span><span>Twig</span><span>Latest
+                Bootstrap</span></div>
           </a>
         </div>
       </section>
@@ -331,92 +301,9 @@
       </section>
     </div>
 
-    <footer role="contentinfo">
-      <div class="ft" aria-hidden="true">
-        <div><span>Drupal 7 to
-            11</span><span>Next.js</span><span>SCSS</span><span>Bootstrap</span><span>Twig</span><span>Accessibility</span><span>Performance</span><span>Open
-            source</span><span>Drupal 7 to
-            11</span><span>Next.js</span><span>SCSS</span><span>Bootstrap</span><span>Twig</span><span>Accessibility</span><span>Performance</span><span>Open
-            source</span><span>Drupal 7 to
-            11</span><span>Next.js</span><span>SCSS</span><span>Bootstrap</span><span>Twig</span><span>Accessibility</span><span>Performance</span><span>Open
-            source</span><span>Drupal 7 to
-            11</span><span>Next.js</span><span>SCSS</span><span>Bootstrap</span><span>Twig</span><span>Accessibility</span><span>Performance</span><span>Open
-            source</span></div>
-      </div>
-      <div class="fi">
-        <div class="fcta">
-          <p class="fbig">Have an idea? <em>Let’s build it together.</em></p>
-          <div class="fact">
-            <p>Open to conversations about Drupal, front-end engineering and interesting product problems.</p>
-            <div class="cb"><a class="btn p" href="mailto:k.anoopsingh92@gmail.com">Say hello →</a><button class="btn"
-                id="copy" type="button">Copy email</button></div>
-          </div>
-        </div>
-        <div class="fgrid">
-          <div>
-            <h2>Anoop Singh</h2>
-            <p>Senior software engineer and Drupal front-end specialist crafting fast, responsive and animated
-              interfaces for 13+ years.</p>
-            <div class="st"><i></i> Currently at NextOpcode Consulting</div>
-            <div class="soc2"><a href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener"
-                aria-label="LinkedIn"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z" />
-                </svg></a><a href="https://twitter.com/kanoopsingh92" target="_blank" rel="noopener"
-                aria-label="Twitter / X"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5.1-6.2L4.6 21H1.4l7.5-8.6L.9 3h6.6l4.6 5.6zM16.4 19h1.8L6.3 4.9H4.4z" />
-                </svg></a><a href="https://www.instagram.com/anoopsingh92/" target="_blank" rel="noopener"
-                aria-label="Instagram"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm5.2-3.7a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2z" />
-                </svg></a><a href="https://www.facebook.com/anoopsinghkashyap" target="_blank" rel="noopener"
-                aria-label="Facebook"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.2-2.4-.2-2.4 0-4 1.4-4 4.1v2.5H7.7V14h2.7v8z" />
-                </svg></a><a href="https://www.drupal.org/u/anoopsingh92" target="_blank" rel="noopener"
-                aria-label="Drupal.org"><svg viewBox="0 0 24 24">
-                  <path d="M12 2s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z" />
-                </svg></a></div>
-          </div>
-          <div>
-            <h3>Explore</h3><a class="l" href="index.html#about">About</a><a class="l" href="about.html">Full
-              story</a><a class="l" href="index.html#skillset">Skillset &amp; tools</a><a class="l"
-              href="index.html#recent">Recent projects</a><a class="l" href="index.html#work">Earlier work</a><a
-              class="l" href="index.html#praise">What people say</a><a class="l" href="index.html#contact">Contact</a>
-          </div>
-          <div>
-            <h3>Highlights</h3><a class="l" href="https://techdrupalogy.blogspot.com/" target="_blank"
-              rel="noopener">TechDrupalogy Blog ↗</a><a class="l" href="https://www.drupal.org/u/anoopsingh92"
-              target="_blank" rel="noopener">Drupal.org profile ↗</a><a class="l"
-              href="https://www.thedroptimes.com/people/40250/anoopsingh92" target="_blank" rel="noopener">The DropTimes
-              ↗</a><a class="l"
-              href="https://www.thedroptimes.com/40251/anoop-singh-launches-new-drupal-theme-flexistyle-bootstrap"
-              target="_blank" rel="noopener">FlexiStyle Bootstrap ↗</a><a class="l"
-              href="https://www.valuebound.com/resources/blog/celebrating-anoop-singhs-success-story-magician-drupal"
-              target="_blank" rel="noopener">Valuebound feature ↗</a>
-          </div>
-          <div>
-            <h3>Say hello</h3><a class="l" href="mailto:k.anoopsingh92@gmail.com">Email me</a><a class="l"
-              href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download Resume ↓</a><a class="l"
-              href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="l"
-              href="https://anoopsingh92.website2.me/" target="_blank" rel="noopener">Website ↗</a>
-          </div>
-        </div>
-        <div class="fwm" aria-hidden="true">ANOOP SINGH</div>
-        <div class="fbot"><span>© 2026 Anoop Singh · India · remote-friendly</span><span>🕒 <b id="clock">--:--</b>
-            IST</span><span>Hand-built with HTML, CSS &amp; a little JS</span></div>
-      </div>
-      <button id="up" aria-label="Back to top"><svg viewBox="0 0 44 44">
-          <circle class="trk" cx="22" cy="22" r="20" />
-          <circle class="prg" id="ring" cx="22" cy="22" r="20" />
-        </svg><span>↑</span></button>
-    </footer>
+    <load src="/src/partials/footer.html" />
+    <script type="module" src="/src/main.js"></script>
 
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="assets/js/main.min.js" defer></script>
   </body>
 
 </html>

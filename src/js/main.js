@@ -1,4 +1,46 @@
-/** @format */
+// src/js/main.js
+
+// Computes the project root dynamically regardless of host or subfolder
+const getBaseUrl = () => {
+  // If Vite's base is injected at build time
+  const viteBase = import.meta.env.BASE_URL;
+  if (viteBase && viteBase !== './') return viteBase;
+
+  // Otherwise calculate relative depth from location
+  const isSubdir = window.location.pathname.includes('/about');
+  return isSubdir ? '../' : './';
+};
+
+// Normalize all links on DOM ready so they point to the correct level
+function initDynamicLinks() {
+  const base = getBaseUrl();
+  const isAboutPage = window.location.pathname.includes('/about');
+
+  // Fix navigation links to sections
+  document.querySelectorAll('a[data-nav]').forEach(link => {
+    const hash = link.getAttribute('href').replace(/^.*#/, '#');
+    link.href = isAboutPage ? `${base}${hash}` : hash;
+  });
+
+  // Fix full story page link
+  document.querySelectorAll('a[data-page]').forEach(link => {
+    link.href = isAboutPage ? './' : `${base}about/`;
+  });
+
+  // Fix logo home link
+  document.querySelectorAll('a[data-home]').forEach(link => {
+    link.href = base;
+  });
+
+  // Fix download resume asset links
+  document.querySelectorAll('a[data-asset]').forEach(link => {
+    const fileName = link.dataset.asset;
+    link.href = `${base}assets/${fileName}`;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initDynamicLinks);
+
 const $ = s => document.querySelector(s),
   $$ = s => [...document.querySelectorAll(s)];
 const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -146,6 +188,7 @@ $$('.rv').forEach(e => io.observe(e));
 
 /* Scroll Progress & Active Nav */
 const links = $$('nav ul a');
+
 window.addEventListener(
   'scroll',
   () => {
@@ -153,23 +196,65 @@ window.addEventListener(
     const bar = $('#bar');
     const max = Math.max(1, h.scrollHeight - h.clientHeight);
     if (bar) bar.style.width = (h.scrollTop / max) * 100 + '%';
+
+    // If on /about/, homepage section links should not be active
+    const isAboutPage = window.location.pathname.includes('/about');
+    if (isAboutPage) {
+      links.forEach(a => {
+        const href = a.getAttribute('href') || '';
+        a.classList.toggle('on', href.includes('about'));
+      });
+      return;
+    }
+
+    // On homepage: calculate active state only for anchor hashes
     links.forEach(a => {
-      const href = a.getAttribute('href');
-      if (href === '#me') {
-        a.classList.toggle('on', location.hash === '#me');
+      const rawHref = a.getAttribute('href') || '';
+
+      // Skip non-hash links like '/about/' to prevent querySelector crash
+      const hashIndex = rawHref.indexOf('#');
+      if (hashIndex === -1) {
+        a.classList.remove('on');
         return;
       }
-      const s = $(href);
-      if (s && !s.closest('[hidden]')) {
-        const r = s.getBoundingClientRect();
-        a.classList.toggle('on', r.top < window.innerHeight * 0.45 && r.bottom > window.innerHeight * 0.45);
-      } else {
+
+      const selector = rawHref.slice(hashIndex); // Extracts only '#about', '#skillset', etc.
+      if (selector === '#' || selector === '#top') {
+        a.classList.remove('on');
+        return;
+      }
+
+      try {
+        const s = $(selector);
+        if (s && !s.closest('[hidden]')) {
+          const r = s.getBoundingClientRect();
+          a.classList.toggle(
+            'on',
+            r.top < window.innerHeight * 0.45 && r.bottom > window.innerHeight * 0.45
+          );
+        } else {
+          a.classList.remove('on');
+        }
+      } catch (e) {
         a.classList.remove('on');
       }
     });
   },
   { passive: true }
 );
+// src/assets/js/main.js
+
+function revealPage() {
+  document.documentElement.classList.add('is-ready');
+}
+
+// Reveal immediately when DOM & styles are loaded, or fallback on window load
+if (document.readyState === 'complete') {
+  revealPage();
+} else {
+  window.addEventListener('load', revealPage);
+}
+
 
 /* Theme Toggle */
 const themeBtn = $('#theme');
@@ -365,26 +450,26 @@ const EARLIER_PROJECTS = [
   {
     title: 'Kendall Hunt Higher Education',
     url: 'https://he.kendallhunt.com',
-    cat: 'Drupal 9 Theming',
+    cat: 'Drupal 11 Theming',
     summary: 'Higher Education digital textbook & curriculum platform connecting university professors and academic departments.',
     highlights: [
       'Custom theme based on bootstrap_sass with Gulp compiler',
       'Interactive department discovery & preview book tools',
       'Refactored CSS bundle size reduced by 40%'
     ],
-    tech: ['Drupal 9', 'Bootstrap SASS', 'Gulp Compiler', 'REST API']
+    tech: ['Drupal 11', 'Bootstrap SASS', 'Gulp Compiler', 'REST API']
   },
   {
-    title: 'Valuebound Corporate Portal',
+    title: 'Valuebound Redesign',
     url: 'https://valuebound.com',
     cat: 'Decoupled Drupal + React',
     summary: 'Corporate platform redesign featuring Decoupled Drupal with REST API and Progressive Web App (PWA) offline capabilities.',
     highlights: [
-      'Headless Drupal 10 backend exposing secure endpoints',
+      'Headless Drupal 11 backend exposing secure endpoints',
       'Dynamic ReactJS components with state management',
       'Near-perfect 98+ PageSpeed & Lighthouse scores'
     ],
-    tech: ['Decoupled Drupal 10', 'ReactJS', 'REST API', 'PWA']
+    tech: ['Decoupled Drupal 11', 'ReactJS', 'REST API', 'PWA']
   },
   {
     title: 'GRL Engagement Multisite',
@@ -586,6 +671,7 @@ function initPinnedScroll() {
 window.addEventListener('load', () => {
   initAboutPinnedScroll();
   initPinnedScroll();
+  revealPage();
   setTimeout(() => {
     if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
   }, 400);
@@ -598,7 +684,14 @@ window.addEventListener('resize', () => {
     ScrollTrigger.refresh();
   }
 });
-
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    // Page was restored from bfcache
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+  }
+});
 /* ===================================================
    MASTER-DETAIL EXPLORERS (Browse List Mode)
 =================================================== */
@@ -755,7 +848,7 @@ const pinRenderers = [];
             t = T[i],
             c = C[i];
           if (ad > 1.05) {
-            t.style.visibility = 'hidden'; 
+            t.style.visibility = 'hidden';
             t.style.pointerEvents = 'none';
           } else {
             t.style.visibility = 'visible';
@@ -893,30 +986,25 @@ document.addEventListener('click', e => {
   const a = e.target.closest('a[href]');
   if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
 
-  const href = a.getAttribute('href');
-  if (!href || !href.startsWith('#') || href === '#') return;
+  const url = new URL(a.href, window.location.href);
+  const hash = url.hash;
+  const isSamePath = url.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '');
 
-  e.preventDefault();
-
-  if (href === '#me') {
-    if (location.hash !== '#me') history.pushState(null, '', '#me');
-    setView(true);
+  // 1. Same page section scroll
+  if (hash && isSamePath) {
+    e.preventDefault();
+    history.pushState(null, '', hash);
+    if (hash === '#top') {
+      goTo(0);
+    } else {
+      const target = $(hash);
+      if (target) goTo(target.getBoundingClientRect().top + window.scrollY - 70);
+    }
     return;
   }
 
-  const wasMe = document.body.classList.contains('pg-me') || location.hash === '#me';
-  history.pushState(null, '', href);
-
-  if (wasMe) {
-    setView(false, href);
-  } else {
-    if (href === '#top') {
-      goTo(0);
-    } else {
-      const target = $(href);
-      if (target) goTo(target.getBoundingClientRect().top + window.scrollY - 70);
-    }
-  }
+  // 2. Cross-page navigation (e.g. from /about/ to /#contact):
+  // Let browser naturally navigate using the href updated by initDynamicLinks
 });
 
 window.addEventListener('popstate', () => {
