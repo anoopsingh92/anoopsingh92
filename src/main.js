@@ -1,3 +1,4 @@
 // src/main.js
 import './css/style.css';
-import './js/main.js';
+import './css/products.css';
+import './js/script.js';

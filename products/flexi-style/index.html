@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>FlexiStyle Base Theme — Free Drupal Theme Download &amp; Documentation</title>
+    <meta name="description"
+      content="FlexiStyle is a pure CSS-based Drupal base theme built on flexbox. Lightweight, atomic design, high Lighthouse scores, and subtheming shell script support.">
+    <meta name="author" content="Anoop Singh">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Anoop Singh">
+    <meta property="og:title" content="FlexiStyle Base Theme — Drupal Contributed Project">
+    <meta property="og:description"
+      content="Pure CSS-based Drupal base theme built on flexbox for Drupal 9, 10, and 11.">
+    <meta property="og:image" content="/assets/img/anoop.webp">
+    <meta property="og:url" content="/products/flexi-style/">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@kanoopsingh92">
+    <meta name="twitter:creator" content="@kanoopsingh92">
+    <meta name="twitter:title" content="FlexiStyle Base Theme — Drupal Contributed Project">
+    <meta name="twitter:description"
+      content="Pure CSS-based Drupal base theme built on flexbox for Drupal 9, 10, and 11.">
+    <meta name="twitter:image" content="/assets/img/anoop.webp">
+
+    <load src="/src/partials/head.html" />
+  </head>
+
+  <body class="pg-product-detail">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <load src="/src/partials/header.html" />
+    <main id="main-content">
+      <a class="back-link" href="../">← Back to all products</a>
+
+      <div class="pdetail-header">
+        <h1 class="mh">FlexiStyle <span>Base Theme.</span></h1>
+        <p class="lead pdetail-lead">
+          A pure CSS-based Drupal base theme built on flexbox with atomic Twig templates and per-component asset
+          attachment.
+        </p>
+      </div>
+
+      <div class="pdetail">
+        <!-- Main Column -->
+        <div>
+          <!-- Details -->
+          <div class="box pdetail-box">
+            <div class="detail-screenshot-box">
+              <img src="https://www.drupal.org/files/styles/grid-3-2x/public/project-images/flexustyle_base_theme.png"
+                alt="FlexiStyle Base Theme Official Drupal.org Screenshot" width="697" height="521" loading="lazy">
+            </div>
+            <h2 class="pdetail-box-title">Details</h2>
+            <p class="pdetail-text">
+              FlexiStyle is a base theme for Drupal. Header, navbar, footer and maintenance-mode time settings
+              and styles are managed from the theme’s Appearance settings. It overrides the standard root Twig
+              templates and attaches CSS/JS libraries per component, so unneeded libraries stay off the page.
+            </p>
+          </div>
+
+          <!-- Live Demo -->
+          <div class="box pdetail-box">
+            <h2 class="pdetail-box-title">Live Demo</h2>
+            <ol class="pdetail-list">
+              <li>Open <strong>SimplyTest.me</strong>.</li>
+              <li>In the “Evaluate Drupal projects” field, type <code>flexi_style</code>.</li>
+              <li>Choose a Drupal version (e.g., Drupal 10 or 11).</li>
+              <li>Click <strong>Launch Sandbox</strong> and wait a few minutes for the environment.</li>
+              <li>Explore the theme in the sandbox.</li>
+            </ol>
+            <div class="pdetail-btn-row">
+              <a class="btn p" href="https://simplytest.me/project/flexi_style" target="_blank" rel="noopener">Launch on
+                SimplyTest.me ↗</a>
+              <a class="btn" href="https://www.drupal.org/project/flexi_style" target="_blank" rel="noopener">Drupal.org
+                Project Page ↗</a>
+            </div>
+          </div>
+
+          <!-- Installation -->
+          <div class="box pdetail-box">
+            <h2 class="pdetail-box-title">Installation</h2>
+            <ol class="pdetail-list">
+              <li>Download FlexiStyle from Drupal.org, or install it with Composer.</li>
+              <li>Install the FlexiStyle theme.</li>
+              <li>Configure the theme settings.</li>
+            </ol>
+            <div class="cmd-chip">
+              <code>composer require 'drupal/flexi_style:^1.4'</code>
+              <button type="button" data-copy="composer require 'drupal/flexi_style:^1.4'">Copy</button>
+            </div>
+          </div>
+
+          <!-- Create a Subtheme Steps -->
+          <div class="box pdetail-box">
+            <h2 class="pdetail-box-title">Create a Subtheme</h2>
+            <ol class="pdetail-list">
+              <li>Install the theme with Composer but don't enable it.</li>
+              <li>Go to the theme folder: <code>cd themes/contrib/flexi_style</code></li>
+              <li>Make the script executable: <code>chmod +x script/subtheme.sh</code></li>
+              <li>Run <code>sh script/subtheme.sh</code> or <code>./script/subtheme.sh</code>.</li>
+              <li>Answer the prompts: machine name (e.g. <code>mytheme_flexistyle</code>) and theme name (e.g.
+                <code>Mytheme FlexiStyle</code>).
+              </li>
+              <li>Go to Administration &rarr; Appearance and enable <strong>Mytheme FlexiStyle</strong>.</li>
+            </ol>
+            <div class="cmd-chip">
+              <code>cd themes/contrib/flexi_style &amp;&amp; chmod +x script/subtheme.sh &amp;&amp; ./script/subtheme.sh</code>
+              <button type="button"
+                data-copy="cd themes/contrib/flexi_style &amp;&amp; chmod +x script/subtheme.sh &amp;&amp; ./script/subtheme.sh">Copy</button>
+            </div>
+          </div>
+
+          <!-- Configuration -->
+          <div class="box pdetail-box">
+            <h2 class="pdetail-box-title">Configuration</h2>
+            <p class="pdetail-text">
+              Open Appearance (<code>/admin/appearance</code>) and click <strong>Settings</strong> for FlexiStyle. You
+              can change the header, navbar, footer and maintenance-mode time settings and styles from
+              there.
+            </p>
+          </div>
+
+          <!-- Features -->
+          <div class="box pdetail-box">
+            <h2 class="pdetail-box-title">Features</h2>
+            <ul class="pdetail-list">
+              <li>Compatible with Drupal 9, 10 and 11</li>
+              <li>User-defined column widths; container and container-fluid layouts</li>
+              <li>Flexbox CSS for layout and structure; easy-to-customize Twig templates</li>
+              <li>Unique body classes by entity, user, role and header style</li>
+              <li>Global styling editor for instant changes without editing CSS files</li>
+              <li>Separate variables file for sitewide colours and sizes</li>
+              <li>Subtheme folder for creating a custom theme; overrides root Twig templates</li>
+              <li>Predefined Google Fonts, Font Awesome and Google Material icons</li>
+              <li>Custom header and footer classes; multiple header styles; header position from the UI</li>
+              <li>Atomic-design, components-based Twig and libraries</li>
+              <li>Lightweight with high Lighthouse performance, best-practice and SEO scores</li>
+              <li>PWA support; responsive and mobile-friendly; cross-browser compatible</li>
+              <li>Pre-designed 403, 404 and maintenance pages; dismissable alert messages</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Sidebar Cards -->
+        <aside class="pdetail-sidebar">
+          <div class="box sidebar-box">
+            <span class="tag sidebar-tag tag-free">Free Download</span>
+            <h3 class="sidebar-title">FlexiStyle</h3>
+            <p class="sidebar-desc">
+              Free, official release package from the Drupal.org FTP server.
+            </p>
+            <span class="sidebar-badge sidebar-badge-green" data-download-count="flexi-style">
+              Tracking downloads...
+            </span>
+            <a id="download-btn" class="btn p btn-block sidebar-btn"
+              href="https://ftp.drupal.org/files/projects/flexi_style-1.4.5.tar.gz" download>
+              Download Free (.tar.gz)
+            </a>
+            <a class="btn btn-block" href="https://www.drupal.org/project/flexi_style/releases" target="_blank"
+              rel="noopener">
+              All releases ↗
+            </a>
+          </div>
+
+          <div class="box sidebar-box">
+            <h3 class="sidebar-title">Theme Details</h3>
+            <div class="sidebar-specs-list">
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Pricing</span><b
+                  class="sidebar-spec-value-green">Free (Open Source)</b></div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Latest release</span><b>1.4</b></div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Updated</span><b>October 2026</b></div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">License</span><b>GPL-2.0+</b></div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Compatibility</span><b>Drupal 9, 10, 11</b>
+              </div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Security</span><b
+                  class="sidebar-spec-value-green">Covered (Opted-in)</b></div>
+              <div class="sidebar-spec-row"><span class="sidebar-spec-label">Maintainer</span><b>Anoop Singh</b></div>
+            </div>
+          </div>
+
+          <div class="box sidebar-box">
+            <h3 class="sidebar-title">Need help?</h3>
+            <p class="sidebar-desc">
+              Having issues with sub-theme configuration or template overrides?
+            </p>
+            <div class="sidebar-actions-col">
+              <a class="btn btn-block" href="https://www.drupal.org/project/issues/flexi_style" target="_blank"
+                rel="noopener">Report an issue ↗</a>
+              <a class="btn btn-block" href="https://www.drupal.org/docs/develop/theming-drupal" target="_blank"
+                rel="noopener">Theming Docs ↗</a>
+              <a class="btn btn-block" data-nav href="#contact">Contact Author ↗</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <load src="/src/partials/footer.html" />
+    <script type="module" src="/src/main.js"></script>
+    <script type="module">
+      import { trackDownload, loadDownloadCount } from '/src/js/products-data.js';
+      loadDownloadCount('flexi-style');
+      const btn = document.getElementById('download-btn');
+      if (btn) btn.addEventListener('click', () => trackDownload('flexi-style'));
+      document.querySelectorAll('.cmd-chip button').forEach(b => {
+        b.addEventListener('click', () => {
+          navigator.clipboard.writeText(b.dataset.copy);
+          const t = b.textContent;
+          b.textContent = 'Copied!';
+          setTimeout(() => b.textContent = t, 1600);
+        });
+      });
+    </script>
+  </body>
+
+</html>

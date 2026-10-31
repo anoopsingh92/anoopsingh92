@@ -24,6 +24,8 @@
       content="Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.">
     <meta name="twitter:image" content="/assets/img/anoop.webp">
 
+    <link rel="preload" as="image" href="/assets/img/anoop.webp" type="image/webp" fetchpriority="high" />
+
     <load src="/src/partials/head.html" />
   </head>
 
@@ -106,7 +108,7 @@
                       <img src="/assets/img/anoop.webp"
                         srcset="/assets/img/anoop.webp 480w, /assets/img/anoop.webp 960w"
                         sizes="(max-width: 768px) 100vw, 480px" alt="Portrait of Anoop Singh" width="480" height="552"
-                        loading="lazy" fetchpriority="high">
+                        fetchpriority="high" decoding="async">
                   </picture>
                   <div class="pic-badge-top">
                     <span>✦</span> Drupal Themer
@@ -178,7 +180,7 @@
               </div>
 
               <div class="about-actions">
-                <a class="btn p" href="about/">Read Full Story →</a>
+                <a class="btn p" href="about/">Read About Me →</a>
                 <a class="btn" href="assets/Anoop-Singh-Resume.pdf" download="Anoop-Singh-Resume.pdf">Download Resume
                   ↓</a>
                 <a class="btn" href="https://www.linkedin.com/in/anoopsingh92/" target="_blank" rel="noopener">LinkedIn

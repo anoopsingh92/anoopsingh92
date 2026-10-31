@@ -9,6 +9,7 @@
 	--ac: #0369a1;
 	--ac2: #db2777;
 	--on: #fff;
+	--code: #f1f1ec;
 	--sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
 	--mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 	box-sizing: border-box;
@@ -80,7 +81,7 @@ body {
 	top: 0;
 }
 a {
-	color: inherit;
+	color: var(--ac);
 	text-decoration: none;
 }
 
@@ -117,6 +118,8 @@ nav {
 }
 
 .logo {
+	color: var(--fg);
+	font-size: 20px;
 	font-family: var(--mono);
 	font-weight: 600;
 }
@@ -136,8 +139,12 @@ nav ul {
 }
 
 nav ul a {
+	color: var(--fg);
 	position: relative;
 	padding: 4px 0;
+}
+nav ul a:hover {
+	color: var(--ac);
 }
 
 nav ul a::after {
@@ -516,7 +523,13 @@ button.btn {
 	overflow-x: auto;
 	transform: translateZ(28px);
 }
-
+.terminal-body code {
+	font-size: inherit;
+	font-family: inherit;
+	background: none;
+	padding: 0;
+	border-radius: 0;
+}
 .t-kw {
 	color: var(--ac2);
 	font-weight: 600;
@@ -1219,9 +1232,13 @@ h2 small {
 	color: var(--mut);
 	font-size: 0.75rem;
 }
-
+.mc p {
+	color: var(--mut);
+	margin: 0;
+}
 .mc .chips span {
 	margin: 0;
+	color: var(--fg);
 }
 
 .mc:hover .chips span {
@@ -1691,9 +1708,10 @@ h2 small {
 }
 
 .soc a {
+	color: var(--fg);
 	font-family: var(--mono);
 	font-size: 0.85rem;
-	border: 1px solid var(--line);
+	border: 1px solid var(--mut);
 	padding: 10px 20px;
 	border-radius: 99px;
 	transition:
@@ -1994,14 +2012,19 @@ body.pg-me .home {
 }
 
 /* Press & Publications */
+a.box {
+	display: block;
+}
 .pr {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 18px;
 }
-
-a.box {
-	display: block;
+.pr a.box {
+	color: inherit;
+}
+.pr a.box:hover {
+	color: var(--ac);
 }
 
 .pr small {
@@ -2764,6 +2787,7 @@ footer {
 }
 
 .fgrid a.l {
+	color: var(--mut);
 	display: block;
 	padding: 4px 0;
 	transition:
@@ -2856,7 +2880,7 @@ footer {
 
 .fbot {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	gap: 14px;
 	flex-wrap: wrap;

@@ -1,6 +1,6 @@
 // vite.config.js
-import { resolve } from 'path';
 import fs from 'fs';
+import { resolve } from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
 import injectHTML from 'vite-plugin-html-inject';
 
@@ -14,9 +14,19 @@ const dev404Plugin = () => ({
         return next();
       }
 
-      // If URL does not match existing pages, serve 404.html
       const cleanUrl = req.url.replace(/^\/ask/, '').replace(/\/$/, '');
-      const validPaths = ['', '/about'];
+
+      // Registered valid routes in your MPA
+      const validPaths = [
+        '',
+        '/about',
+        '/products',
+        '/products/flexi-style',
+        '/products/flexistyle-bootstrap',
+        '/products/flexistyle-bootstrap-scss',
+        '/products/flexistyle-dxp',
+        '/products/workpulse', // Added valid route
+      ];
 
       if (!validPaths.includes(cleanUrl)) {
         const file404 = resolve(import.meta.dirname, '404.html');
@@ -42,8 +52,6 @@ export default defineConfig(({ mode }) => {
   return {
     base: basePath,
     plugins: [injectHTML(), dev404Plugin()],
-
-    // --- Add server configuration here ---
     server: {
       host: 'localhost',
       port: 5173,
@@ -53,7 +61,6 @@ export default defineConfig(({ mode }) => {
         port: 5173,
       },
     },
-
     build: {
       outDir: 'dist',
       target: 'es2020',
@@ -65,9 +72,15 @@ export default defineConfig(({ mode }) => {
           main: resolve(import.meta.dirname, 'index.html'),
           about: resolve(import.meta.dirname, 'about/index.html'),
           notfound: resolve(import.meta.dirname, '404.html'),
+          products: resolve(import.meta.dirname, 'products/index.html'),
+          productFlexiStyle: resolve(import.meta.dirname, 'products/flexi-style/index.html'),
+          productBootstrap: resolve(import.meta.dirname, 'products/flexistyle-bootstrap/index.html'),
+          productBootstrapScss: resolve(import.meta.dirname, 'products/flexistyle-bootstrap-scss/index.html'),
+          productDxp: resolve(import.meta.dirname, 'products/flexistyle-dxp/index.html'),
+          workpulse: resolve(import.meta.dirname, 'products/workpulse/index.html'),
         },
         output: {
-          entryFileNames: 'assets/bundle.min.js',
+          entryFileNames: 'assets/[name].min.js',
           chunkFileNames: 'assets/[name].min.js',
           assetFileNames: (assetInfo) => {
             if (assetInfo.name && assetInfo.name.endsWith('.css')) {

@@ -16,6 +16,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 </noscript>
+
 <!-- Top of body / inside src/partials/header.html -->
 <style id="preloader-style">
   html {
@@ -29,3 +30,13 @@
     transition: opacity 0.25s ease-in-out;
   }
 </style>
+<script>
+  // Read saved theme from localStorage, or fall back to system preference
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
