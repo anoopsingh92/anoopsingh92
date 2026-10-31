@@ -45,6 +45,11 @@ function normalizeNavLinks() {
     const asset = link.dataset.asset;
     link.href = `${root}assets/${asset}`;
   });
+
+  // 6. Case Studya page
+  document.querySelectorAll('a[data-casestudy]').forEach(link => {
+    link.href = `${root}case-study.html`;
+  });
 }
 
 document.addEventListener('DOMContentLoaded', normalizeNavLinks);
