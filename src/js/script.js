@@ -1,45 +1,53 @@
-// src/js/main.js
+// src/js/script.js
 
-// Computes the project root dynamically regardless of host or subfolder
-const getBaseUrl = () => {
-  // If Vite's base is injected at build time
-  const viteBase = import.meta.env.BASE_URL;
-  if (viteBase && viteBase !== './') return viteBase;
-
-  // Otherwise calculate relative depth from location
-  const isSubdir = window.location.pathname.includes('/about');
-  return isSubdir ? '../' : './';
+// Dynamic root resolution that respects Vite's BASE_PATH (/ask/ or /)
+var getAppRoot = () => {
+  const path = window.location.pathname;
+  const match = path.match(/^(.*?\/ask\/|^\/)/);
+  let root = match ? match[1] : '/';
+  if (!root.endsWith('/')) root += '/';
+  return root;
 };
 
-// Normalize all links on DOM ready so they point to the correct level
-function initDynamicLinks() {
-  const base = getBaseUrl();
-  const isAboutPage = window.location.pathname.includes('/about');
+function normalizeNavLinks() {
+  const root = getAppRoot();
+  const currentPath = window.location.pathname.replace(/\/$/, '');
+  const rootPath = root.replace(/\/$/, '');
+  const isHome = currentPath === rootPath || currentPath === '';
 
-  // Fix navigation links to sections
+  // 1. In-page anchor hash links (#about, #skillset, #contact)
   document.querySelectorAll('a[data-nav]').forEach(link => {
-    const hash = link.getAttribute('href').replace(/^.*#/, '#');
-    link.href = isAboutPage ? `${base}${hash}` : hash;
+    const raw = link.getAttribute('href') || '';
+    const hashIndex = raw.indexOf('#');
+    if (hashIndex !== -1) {
+      const hash = raw.slice(hashIndex);
+      link.href = isHome ? hash : `${root}${hash}`;
+    }
   });
 
-  // Fix full story page link
+  // 2. Full Story link
   document.querySelectorAll('a[data-page]').forEach(link => {
-    link.href = isAboutPage ? './' : `${base}about/`;
+    link.href = `${root}about/`;
   });
 
-  // Fix logo home link
+  // 3. Products & Themes link
+  document.querySelectorAll('a[data-products]').forEach(link => {
+    link.href = `${root}products/`;
+  });
+
+  // 4. Logo / Home link
   document.querySelectorAll('a[data-home]').forEach(link => {
-    link.href = base;
+    link.href = root;
   });
 
-  // Fix download resume asset links
+  // 5. Assets (Resume download)
   document.querySelectorAll('a[data-asset]').forEach(link => {
-    const fileName = link.dataset.asset;
-    link.href = `${base}assets/${fileName}`;
+    const asset = link.dataset.asset;
+    link.href = `${root}assets/${asset}`;
   });
 }
 
-document.addEventListener('DOMContentLoaded', initDynamicLinks);
+document.addEventListener('DOMContentLoaded', normalizeNavLinks);
 
 const $ = s => document.querySelector(s),
   $$ = s => [...document.querySelectorAll(s)];
@@ -244,26 +252,32 @@ window.addEventListener(
 );
 // src/assets/js/main.js
 
+// Ensure html.is-ready is added immediately to prevent white screens
 function revealPage() {
   document.documentElement.classList.add('is-ready');
 }
 
-// Reveal immediately when DOM & styles are loaded, or fallback on window load
-if (document.readyState === 'complete') {
-  revealPage();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', revealPage);
 } else {
-  window.addEventListener('load', revealPage);
+  revealPage();
 }
+window.addEventListener('load', revealPage);
 
 
 /* Theme Toggle */
-const themeBtn = $('#theme');
+const themeBtn = document.querySelector('#theme'); // or $('#theme')
+
 if (themeBtn) {
-  themeBtn.onclick = () => {
-    const r = document.documentElement;
-    const dark = getComputedStyle(r).getPropertyValue('--bg').trim() === '#0a0e17';
-    r.dataset.theme = dark ? 'light' : 'dark';
-  };
+  themeBtn.addEventListener('click', () => {
+    const root = document.documentElement;
+    // Toggle between dark and light
+    const currentTheme = root.dataset.theme;
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    root.dataset.theme = nextTheme;
+    localStorage.setItem('theme', nextTheme);
+  });
 }
 
 /* Background Canvas Particles */
@@ -986,25 +1000,29 @@ document.addEventListener('click', e => {
   const a = e.target.closest('a[href]');
   if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
 
+  const href = a.getAttribute('href');
+  if (!href) return;
+
+  // If clicking an external URL or page change (like /products/ or /about/), let the browser navigate naturally
+  if (!href.includes('#')) {
+    return;
+  }
+
   const url = new URL(a.href, window.location.href);
   const hash = url.hash;
   const isSamePath = url.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '');
 
-  // 1. Same page section scroll
+  // Only smooth-scroll if the anchor hash exists on the current page
   if (hash && isSamePath) {
     e.preventDefault();
     history.pushState(null, '', hash);
     if (hash === '#top') {
       goTo(0);
     } else {
-      const target = $(hash);
+      const target = document.querySelector(hash);
       if (target) goTo(target.getBoundingClientRect().top + window.scrollY - 70);
     }
-    return;
   }
-
-  // 2. Cross-page navigation (e.g. from /about/ to /#contact):
-  // Let browser naturally navigate using the href updated by initDynamicLinks
 });
 
 window.addEventListener('popstate', () => {
