@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "1.0.0",
 	"type": "module",
+	"license": "MIT",
 	"description": "Anoop Singh, Senior Software Engineer at NextOpcode Consulting with 13+ years of experience crafting fast, responsive front-ends and custom Drupal themes.",
 	"main": "sw.js",
 	"dependencies": {
@@ -31,6 +32,6 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC"
+	"author": "Anoop Singh",
+	"homepage": "https://anoopsingh92.github.io/ask"
 }
