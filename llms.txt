@@ -9,7 +9,7 @@
 
 ## Key Links
 - [Portfolio Homepage](https://anoopsingh92.github.io/ask/)
-- [Full Career Story & Certifications](https://anoopsingh92.github.io/ask/about.html)
+- [Full Career Story & Certifications](https://anoopsingh92.github.io/ask/about/)
 - [Download Resume (PDF)](https://anoopsingh92.github.io/ask/assets/Anoop-Singh-Resume.pdf)
 - [LinkedIn Profile](https://www.linkedin.com/in/anoopsingh92/)
 - [Drupal.org Profile](https://www.drupal.org/u/anoopsingh92)
